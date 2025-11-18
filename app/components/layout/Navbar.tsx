@@ -1,30 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { getTranslations, getCurrentLanguage, setLanguage } from '@/app/lib/translations';
+import { ShoppingCart } from 'lucide-react';
+import { getTranslations, setLanguage } from '@/app/lib/translations';
+import { useCart } from '@/app/contexts/CartContext';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 export default function Navbar() {
-  const [currentLang, setCurrentLang] = useState<'fr' | 'en'>('fr');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { language: currentLang, setLanguage: setLanguageContext } = useLanguage();
   const t = getTranslations(currentLang);
-
-  useEffect(() => {
-    const lang = getCurrentLanguage();
-    setCurrentLang(lang);
-  }, []);
+  const { getCartItemCount } = useCart();
+  const cartItemCount = getCartItemCount();
 
   const toggleLanguage = () => {
     const newLang = currentLang === 'fr' ? 'en' : 'fr';
     setLanguage(newLang);
-    setCurrentLang(newLang);
+    setLanguageContext(newLang);
   };
 
   const navLinks = [
     { href: '/', label: t.nav.home },
     { href: '/courses', label: t.nav.courses },
+    { href: '/diagnostic', label: currentLang === 'fr' ? 'Diagnostic IA' : 'AI Diagnostic' },
     { href: '/about', label: t.nav.about },
     { href: '/contact', label: t.nav.contact }
   ];
@@ -65,6 +66,20 @@ export default function Navbar() {
 
           {/* Language Switcher & Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Cart Icon */}
+            <Link
+              href="/cart"
+              className="relative px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors"
+              aria-label="Shopping cart"
+            >
+              <ShoppingCart size={20} />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
+
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
@@ -141,6 +156,23 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Mobile Cart Link */}
+            <Link
+              href="/cart"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <ShoppingCart size={20} />
+                {currentLang === 'fr' ? 'Panier' : 'Cart'}
+              </span>
+              {cartItemCount > 0 && (
+                <span className="bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
 
             {/* Mobile Language Toggle */}
             <button

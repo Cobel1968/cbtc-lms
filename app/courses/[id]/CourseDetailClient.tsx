@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Course } from '@/app/lib/types';
 import { useLanguage } from '@/app/contexts/LanguageContext';
+import { useCart } from '@/app/contexts/CartContext';
 import BilingualText from '@/app/components/BilingualText';
 import Link from 'next/link';
 
@@ -18,6 +19,7 @@ interface CourseDetailClientProps {
 export default function CourseDetailClient({ course: initialCourse }: CourseDetailClientProps) {
   const router = useRouter();
   const { language } = useLanguage();
+  const { addToCart, isInCart } = useCart();
   const [course] = useState(initialCourse);
 
   useEffect(() => {
@@ -107,8 +109,28 @@ export default function CourseDetailClient({ course: initialCourse }: CourseDeta
                   {language === 'fr' ? "S'inscrire maintenant" : 'Enroll now'}
                 </Link>
 
-                <button className="block w-full border-2 border-blue-600 text-blue-600 text-center py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-                  {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
+                <button
+                  onClick={() => {
+                    if (course) {
+                      addToCart({
+                        id: course.id,
+                        title: course.name[language] || course.name.fr,
+                        description: course.description[language] || course.description.fr,
+                        price: course.price_xof,
+                        price_xof: course.price_xof,
+                      });
+                    }
+                  }}
+                  disabled={course ? isInCart(course.id) : false}
+                  className={`block w-full border-2 border-blue-600 text-center py-3 rounded-lg font-semibold transition-colors ${
+                    course && isInCart(course.id)
+                      ? 'bg-green-50 text-green-600 border-green-600 cursor-not-allowed'
+                      : 'text-blue-600 hover:bg-blue-50'
+                  }`}
+                >
+                  {course && isInCart(course.id)
+                    ? (language === 'fr' ? 'Déjà dans le panier' : 'Already in cart')
+                    : (language === 'fr' ? 'Ajouter au panier' : 'Add to cart')}
                 </button>
 
                 <div className="mt-6 pt-6 border-t border-gray-200 space-y-3 text-sm">
