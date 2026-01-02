@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Identifiants requis pour accÃ©der Ã  CBTC' }, 
+        { error: 'Identifiants requis pour accéder à CBTC' }, 
         { status: 400 }
       );
     }
@@ -29,32 +29,43 @@ export async function POST(req: Request) {
     }
     
     // Get user profile from users table
-    let user;
-    try {
-      user = await db.getUserByEmail(email);
-    } catch (error) {
+    let userProfile;
+    const { data: existingUser, error: getUserError } = await db.getUserByEmail(email);
+    
+    if (getUserError || !existingUser) {
       // If user doesn't exist in users table, create one from auth user
-      user = await db.createUser({
+      const { data: newUser, error: createError } = await db.createUser({
         id: authData.user?.id,
         email: authData.user?.email!,
         role: 'student',
         is_active: true,
       });
+      
+      if (createError || !newUser) {
+        return NextResponse.json(
+          { error: 'Erreur lors de la création du profil utilisateur' },
+          { status: 500 }
+        );
+      }
+      
+      userProfile = newUser;
+    } else {
+      userProfile = existingUser;
     }
     
     return NextResponse.json({ 
       data: {
         token: authData.session?.access_token || '',
         user: {
-          id: user?.id,
-          email: user?.email,
-          role: user?.role,
-          first_name: user?.first_name,
-          last_name: user.last_name,
-          created_at: user.created_at,
+          id: userProfile.id,
+          email: userProfile.email,
+          role: userProfile.role,
+          first_name: userProfile.first_name,
+          last_name: userProfile.last_name,
+          created_at: userProfile.created_at,
         },
       },
-      message: 'ðŸš€ Connexion CBTC rÃ©ussie ! Redirection...',
+      message: '🚀 Connexion CBTC réussie ! Redirection...',
     });
     
   } catch (error) {
@@ -65,9 +76,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
-
-
-
-
-
