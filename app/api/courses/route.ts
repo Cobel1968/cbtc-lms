@@ -1,27 +1,22 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import * as db from '@/lib/db-helpers';
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url);
-    const published = searchParams.get('published');
-    const category = searchParams.get('category');
-    const level = searchParams.get('level');
-    const instructor_id = searchParams.get('instructor_id');
+    const { data: courses, error } = await db.getCourses();
     
-    const filters: any = {};
-    if (published !== null) filters.published = published === 'true';
-    if (category) filters.category = category;
-    if (level) filters.level = level;
-    if (instructor_id) filters.instructor_id = instructor_id;
+    if (error) {
+      return NextResponse.json(
+        { error: 'Erreur lors de la récupération des cours' }, 
+        { status: 500 }
+      );
+    }
     
-    const courses = await db.getCourses(filters);
-    
-    return NextResponse.json(courses);
+    return NextResponse.json({ data: courses || [] });
   } catch (error: any) {
     console.error('Error fetching courses:', error);
     return NextResponse.json(
-      { error: error.message || 'Erreur lors de la rÃ©cupÃ©ration des cours' }, 
+      { error: error.message || 'Erreur serveur' }, 
       { status: 500 }
     );
   }
@@ -32,27 +27,28 @@ export async function POST(req: Request) {
     const courseData = await req.json();
     
     // Validate required fields
-    if (!courseData.name || !courseDataData?.description || !courseData.instructor_id) {
+    if (!courseData.name_fr || !courseData.name_en || !courseData.instructor_id) {
       return NextResponse.json(
-        { error: 'Les champs name, description et instructor_id sont requis' }, 
+        { error: 'Les champs name_fr, name_en et instructor_id sont requis' }, 
         { status: 400 }
       );
     }
     
-    const course = await db.createCourse({
-      ...courseData,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    });
+    const { data: course, error } = await db.createCourse(courseData);
     
-    return NextResponse.json(course, { status: 201 });
+    if (error || !course) {
+      return NextResponse.json(
+        { error: 'Erreur lors de la création du cours' },
+        { status: 500 }
+      );
+    }
+    
+    return NextResponse.json({ data: course }, { status: 201 });
   } catch (error: any) {
     console.error('Error creating course:', error);
     return NextResponse.json(
-      { error: error.message || 'Erreur lors de la crÃ©ation du cours' }, 
+      { error: error.message || 'Erreur lors de la création du cours' }, 
       { status: 500 }
     );
   }
 }
-
-

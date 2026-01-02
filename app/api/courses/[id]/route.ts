@@ -6,14 +6,21 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const course = await db.getCourseById(paramsData?.id);
-    return NextResponse.json(course);
+    const { data: course, error } = await db.getCourseById(params.id);
+    
+    if (error || !course) {
+      return NextResponse.json(
+        { error: 'Cours non trouvé' }, 
+        { status: 404 }
+      );
+    }
+    
+    return NextResponse.json({ data: course });
   } catch (error: any) {
     console.error('Error fetching course:', error);
     return NextResponse.json(
-      { error: error.message || 'Cours non trouvé' }, 
-      { status: 404 }
+      { error: error.message || 'Erreur serveur' }, 
+      { status: 500 }
     );
   }
 }
-

@@ -36,29 +36,27 @@ export async function createUser(userData: {
 
 // COURSE HELPERS
 export async function getCourseById(id: string) {
-  const { data, error } = await supabase.from('courses').select('*').eq('id', id).single();
+  const { data, error } = await supabase
+    .from('courses')
+    .select('*')
+    .eq('id', id)
+    .single();
   return { data, error };
 }
 
 export async function getCourses() {
-  const { data, error } = await supabase.from('courses').select('*');
+  const { data, error } = await supabase
+    .from('courses')
+    .select('*')
+    .eq('is_published', true)
+    .order('created_at', { ascending: false });
   return { data, error };
 }
 
-export async function createCourse(course: { 
-  title: string; 
-  description?: string; 
-  instructor_id: string;
-  price?: number;
-}) {
+export async function createCourse(course: any) {
   const { data, error } = await supabase
     .from('courses')
-    .insert({
-      title: course.title,
-      description: course.description,
-      instructor_id: course.instructor_id,
-      price: course.price ?? 0,
-    })
+    .insert(course)
     .select()
     .single();
   return { data, error };
