@@ -46,10 +46,10 @@ export async function POST(req: Request) {
       data: {
         token: authData.session?.access_token || '',
         user: {
-          id: userData?.id,
-          email: userData?.email,
-          role: userData?.role,
-          first_name: userData?.first_name,
+          id: user?.id,
+          email: user?.email,
+          role: user?.role,
+          first_name: user?.first_name,
           last_name: user.last_name,
           created_at: user.created_at,
         },
