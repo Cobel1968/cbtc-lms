@@ -12,24 +12,28 @@ export async function POST(req: Request) {
       );
     }
     
-    const enrollment = await db.createEnrollment({
+    const { data: enrollment, error } = await db.createEnrollment({
       user_id,
       course_id,
       learning_contract_id: learning_contract_id || null,
       enrollment_date: new Date().toISOString(),
       progress_percentage: 0,
       status: 'pending',
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
     });
     
-    return NextResponse.json(enrollment, { status: 201 });
+    if (error || !enrollment) {
+      return NextResponse.json(
+        { error: 'Erreur lors de l\'inscription au cours' },
+        { status: 500 }
+      );
+    }
+    
+    return NextResponse.json({ data: enrollment }, { status: 201 });
   } catch (error: any) {
     console.error('Error creating enrollment:', error);
     return NextResponse.json(
-      { error: error.message || 'Erreur lors de l\'inscription au cours' }, 
+      { error: error.message || 'Erreur serveur' }, 
       { status: 500 }
     );
   }
 }
-

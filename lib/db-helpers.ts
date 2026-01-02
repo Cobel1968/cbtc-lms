@@ -3,7 +3,11 @@ export const supabase = createServerClient();
 
 // USER HELPERS
 export async function getUserByEmail(email: string) {
-  const { data, error } = await supabase.from('users').select('*').eq('email', email).single();
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('email', email)
+    .single();
   return { data, error };
 }
 
@@ -53,28 +57,90 @@ export async function getCourses() {
   return { data, error };
 }
 
-export async function createCourse(course: any) {
+export async function createCourse(courseData: any) {
   const { data, error } = await supabase
     .from('courses')
-    .insert(course)
+    .insert(courseData)
     .select()
     .single();
   return { data, error };
 }
 
-// ENROLLMENT HELPER
-export async function createEnrollment(enrollment: { 
-  user_id: string; 
-  course_id: string; 
-  enrolled_at?: string;
-}) {
+export async function updateCourse(id: string, updates: any) {
+  const { data, error } = await supabase
+    .from('courses')
+    .update(updates)
+    .eq('id', id)
+    .select()
+    .single();
+  return { data, error };
+}
+
+export async function deleteCourse(id: string) {
+  const { data, error } = await supabase
+    .from('courses')
+    .delete()
+    .eq('id', id);
+  return { data, error };
+}
+
+// ENROLLMENT HELPERS
+export async function createEnrollment(enrollmentData: any) {
   const { data, error } = await supabase
     .from('enrollments')
-    .insert({
-      user_id: enrollment.user_id,
-      course_id: enrollment.course_id,
-      enrolled_at: enrollment.enrolled_at || new Date().toISOString(),
-    })
+    .insert(enrollmentData)
+    .select()
+    .single();
+  return { data, error };
+}
+
+export async function getEnrollmentsByUser(userId: string) {
+  const { data, error } = await supabase
+    .from('enrollments')
+    .select('*, courses(*)')
+    .eq('user_id', userId);
+  return { data, error };
+}
+
+export async function getEnrollmentsByCourse(courseId: string) {
+  const { data, error } = await supabase
+    .from('enrollments')
+    .select('*, users(*)')
+    .eq('course_id', courseId);
+  return { data, error };
+}
+
+// PAYMENT HELPERS
+export async function createPayment(paymentData: any) {
+  const { data, error } = await supabase
+    .from('payments')
+    .insert(paymentData)
+    .select()
+    .single();
+  return { data, error };
+}
+
+export async function getPaymentsByUser(userId: string) {
+  const { data, error } = await supabase
+    .from('payments')
+    .select('*')
+    .eq('user_id', userId);
+  return { data, error };
+}
+
+// DIAGNOSTIC HELPERS
+export async function getDiagnosticQuestions(testId: string) {
+  const { data, error } = await supabase
+    .from('diagnostic_questions')
+    .select('*')
+    .eq('test_id', testId);
+  return { data, error };
+}
+
+export async function saveDiagnosticResult(resultData: any) {
+  const { data, error } = await supabase
+    .from('diagnostic_results')
+    .insert(resultData)
     .select()
     .single();
   return { data, error };
