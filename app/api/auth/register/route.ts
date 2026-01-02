@@ -23,13 +23,13 @@ export async function POST(req: Request) {
     
     if (authError || !authData.user) {
       return NextResponse.json(
-        { error: authError?.message || 'Erreur lors de la crÃ©ation du compte' }, 
+        { error: authError?.message || 'Erreur lors de la création du compte' }, 
         { status: 400 }
       );
     }
     
     // Create user profile in users table
-    const user = await db.createUser({
+    const { data: newUser, error: createError } = await db.createUser({
       id: authData.user?.id,
       email: authData.user?.email!,
       first_name: first_name || null,
@@ -39,19 +39,27 @@ export async function POST(req: Request) {
       is_active: true,
     });
     
+    if (createError || !newUser) {
+      return NextResponse.json(
+        { error: 'Erreur lors de la création du profil utilisateur' },
+        { status: 500 }
+      );
+    }
+    
     return NextResponse.json({ 
       data: {
         token: authData.session?.access_token || '',
         user: {
-          id: userData?.id,
-          email: userData?.email,
-          role: userData?.role,
-          first_name: userData?.first_name,
-          last_name: user.last_name,
-          created_at: user.created_at,
+          id: newUser.id,
+          email: newUser.email,
+          role: newUser.role,
+          first_name: newUser.first_name,
+          last_name: newUser.last_name,
+          phone: newUser.phone,
+          created_at: newUser.created_at,
         },
       },
-      message: 'Compte crÃ©Ã© avec succÃ¨s !',
+      message: 'Compte créé avec succès !',
     });
     
   } catch (error: any) {
@@ -62,5 +70,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
-

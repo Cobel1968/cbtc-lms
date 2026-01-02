@@ -1,4 +1,4 @@
-﻿import { createServerClient } from '@/lib/supabase';
+import { createServerClient } from '@/lib/supabase';
 export const supabase = createServerClient();
 
 // USER HELPERS
@@ -12,6 +12,9 @@ export async function createUser(userData: {
   email: string; 
   role?: 'student' | 'instructor' | 'admin'; 
   name?: string;
+  first_name?: string | null;
+  last_name?: string | null;
+  phone?: string | null;
   is_active?: boolean;
 }) {
   const { data, error } = await supabase
@@ -21,6 +24,9 @@ export async function createUser(userData: {
       email: userData.email,
       role: userData.role || 'student',
       name: userData.name,
+      first_name: userData.first_name,
+      last_name: userData.last_name,
+      phone: userData.phone,
       is_active: userData.is_active ?? true,
     })
     .select()
