@@ -2,7 +2,6 @@ import { supabase } from '@/lib/supabase'
 import { ShieldCheck, Award, CheckCircle2, Globe } from 'lucide-react'
 
 export default async function PublicVerification({ params }: { params: { id: string } }) {
-  // Fetch public data for the specific certificate
   const { data: student } = await supabase
     .from('profiles')
     .select('full_name, time_saved, curriculum_density, language_preference')
@@ -23,7 +22,6 @@ export default async function PublicVerification({ params }: { params: { id: str
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100">
-        {/* Verification Header */}
         <div className="bg-blue-600 p-8 text-center text-white">
           <div className="inline-flex p-3 bg-white/20 rounded-full mb-4">
             <ShieldCheck size={48} />
@@ -32,7 +30,6 @@ export default async function PublicVerification({ params }: { params: { id: str
           <p className="text-blue-100 text-sm opacity-80">Official Cobel AI Engine Record</p>
         </div>
 
-        {/* Student Data */}
         <div className="p-8 space-y-6">
           <div className="text-center">
             <h2 className="text-2xl font-black text-slate-800">{student.full_name}</h2>
@@ -45,36 +42,18 @@ export default async function PublicVerification({ params }: { params: { id: str
             <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
               <p className="text-[10px] text-slate-400 font-bold uppercase">AI Validation</p>
               <p className="text-xl font-bold text-slate-700">-{student.time_saved}h</p>
-              <p className="text-[10px] text-slate-500">Accelerated Path</p>
             </div>
             <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-              <p className="text-[10px] text-slate-400 font-bold uppercase">Technical Fluency</p>
-              <p className="text-xl font-bold text-slate-700">Level 4</p>
-              <p className="text-[10px] text-slate-500">Bilingual Mapping</p>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 text-sm text-slate-600">
-              <CheckCircle2 className="text-green-500" size={18} />
-              <span>Certified by CEO Abel C.</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-slate-600">
-              <Globe className="text-blue-500" size={18} />
-              <span>Vocational Standards Met</span>
+              <p className="text-[10px] text-slate-400 font-bold uppercase">Integrity Status</p>
+              <p className="text-xl font-bold text-green-600 uppercase">Verified</p>
             </div>
           </div>
 
           <div className="pt-6 border-t border-slate-100 text-center">
-             <p className="text-[10px] text-slate-400 font-mono">ID: {params.id}</p>
+             <p className="text-[10px] text-slate-400 font-mono">Certificate ID: {params.id}</p>
           </div>
         </div>
       </div>
-      
-      <p className="mt-8 text-slate-400 text-xs text-center px-10">
-        This document is an official digital record of the Cobel Business Training Center. 
-        Issued by Coulibaly Abel, PGCE, MBA, NEBOSH.
-      </p>
     </div>
   )
 }
