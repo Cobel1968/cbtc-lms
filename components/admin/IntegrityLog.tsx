@@ -5,18 +5,13 @@ import { ShieldCheck, Map, AlertTriangle, UserCheck } from 'lucide-react'
 
 export default function IntegrityLog() {
   const [logs, setLogs] = useState([])
-
   useEffect(() => {
     const fetchLogs = async () => {
-      const { data } = await supabase
-        .from('integrity_logs')
-        .select('*, profiles(full_name)')
-        .order('timestamp', { ascending: false })
+      const { data } = await supabase.from('integrity_logs').select('*, profiles(full_name)').order('timestamp', { ascending: false })
       if (data) setLogs(data)
     }
     fetchLogs()
   }, [])
-
   return (
     <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mt-8">
       <div className="flex items-center gap-2 mb-6">
@@ -27,7 +22,7 @@ export default function IntegrityLog() {
         {logs.map((log: any) => (
           <div key={log.id} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
             <div className="flex items-center gap-4">
-              <div className={p-2 rounded-lg }>
+              <div className={`p-2 rounded-lg ${log.status === 'Success' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
                 {log.verification_type === 'Biometric' ? <UserCheck size={20} /> : <Map size={20} />}
               </div>
               <div>

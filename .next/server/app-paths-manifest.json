@@ -2,6 +2,6 @@
   "/diagnostic/page": "app/diagnostic/page.js",
   "/admin/page": "app/admin/page.js",
   "/student/page": "app/student/page.js",
-  "/admin/audit/readiness/page": "app/admin/audit/readiness/page.js",
-  "/admin/integrity/page": "app/admin/integrity/page.js"
+  "/admin/integrity/page": "app/admin/integrity/page.js",
+  "/admin/audit/readiness/page": "app/admin/audit/readiness/page.js"
 }
