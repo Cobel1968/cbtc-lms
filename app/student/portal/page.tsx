@@ -1,22 +1,25 @@
 "use client"
-import dynamic from 'next/dynamic'
+import React, { useState, useEffect } from 'react'
 import TopNav from '@/components/TopNav'
 import CourseSidebar from "@/components/CourseSidebar"
 
-const PortalDashboard = dynamic(() => import('@/components/portal/PortalDashboard'), { 
-  ssr: false, 
-  loading: () => <div className="p-8 bg-slate-100 animate-pulse rounded-xl">Optimizing Curriculum Density...</div>
-})
-
 export default function StudentPortal() {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) return null // Returns a blank page during build, preventing any crashes
+
   return (
     <div className="min-h-screen bg-slate-50">
       <TopNav />
       <div className="flex">
         <CourseSidebar />
         <main className="flex-1 p-8">
-          <h1 className="text-2xl font-bold mb-6 text-slate-800">Student Portal</h1>
-          <PortalDashboard studentData={null} />
+          <h1 className="text-2xl font-bold">Cobel LMS Dashboard</h1>
+          <p className="mt-4">Initializing Adaptive Learning Algorithm...</p>
         </main>
       </div>
     </div>
