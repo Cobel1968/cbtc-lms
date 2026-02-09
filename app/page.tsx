@@ -1,76 +1,53 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import { ArrowRight, Timer } from 'lucide-react'
+import { Zap, Globe, ShieldCheck, GraduationCap } from 'lucide-react'
 
-export default function PerfectScalePage() {
+export default function LandingPage() {
   return (
-    <div className="bg-white min-h-screen font-sans selection:bg-blue-100 flex flex-col overflow-x-hidden">
-      
-      {/* HEADER - Kept at 100% for readability but tightened */}
-      <nav className="flex justify-between items-center px-12 py-6 bg-white sticky top-0 z-50 border-b border-slate-50">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#111827] rounded-lg flex items-center justify-center">
-            <div className="w-4 h-4 bg-blue-500 rotate-45"></div>
-          </div>
-          <span className="font-black text-xl tracking-tighter uppercase text-slate-900">
-            Cobel <span className="text-blue-600">LMS</span>
-          </span>
+    <div className="bg-white text-slate-900 min-h-screen">
+      {/* Navigation */}
+      <nav className="p-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div className="font-black text-2xl tracking-tighter">COBEL CBTC</div>
+        <div className="flex gap-6 items-center">
+          <Link href="/login" className="text-sm font-bold text-slate-600 hover:text-blue-600">Login</Link>
+          <Link href="/employer/register" className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold">Employer Portal</Link>
         </div>
-        
-        <div className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-          <a href="#" className="hover:text-blue-600 transition-colors">Methodology</a>
-          <a href="#" className="hover:text-blue-600 transition-colors">Curriculum</a>
-          <a href="#" className="hover:text-blue-600 transition-colors">Enterprise</a>
-        </div>
-
-        <Link href="/admin" className="bg-[#111827] text-white px-7 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all">
-          Console Access
-        </Link>
       </nav>
 
-      {/* MAIN CONTENT - SCALED DOWN BY 10% */}
-      <main className="flex-1 flex items-center justify-center">
-        <div style={{ transform: 'scale(0.9)', transformOrigin: 'center center' }} className="w-full max-w-7xl px-12 py-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <div className="space-y-6">
-              <span className="bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border border-blue-100 inline-block">
-                Technical Innovation // 2026
-              </span>
-              
-              <h1 className="text-[65px] font-black text-slate-900 leading-[0.85] uppercase italic tracking-tighter">
-                Training <br/> at the <br/>
-                <span className="text-blue-600">Speed of <br/> Thought.</span>
-              </h1>
+      {/* Hero Section */}
+      <header className="py-20 px-6 text-center max-w-4xl mx-auto">
+        <h1 className="text-6xl font-black mb-6 tracking-tight">AI-Accelerated Vocational Training.</h1>
+        <p className="text-xl text-slate-500 mb-10 leading-relaxed">
+          Skip what you already know. Our <strong>Cobel AI Engine</strong> maps your technical fluency in English and French using 
+          advanced handwriting analysis to fast-track your certification.
+        </p>
+        <div className="flex justify-center gap-4">
+          <Link href="/register" className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold shadow-xl">Get Started</Link>
+          <Link href="#how-it-works" className="border border-slate-200 px-8 py-4 rounded-2xl font-bold">View Curriculum</Link>
+        </div>
+      </header>
 
-              <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-md">
-                Solving the technical problem of knowledge gaps and bilingual friction through 
-                <span className="text-slate-900 font-bold"> Temporal Optimization</span> and 
-                <span className="text-slate-900 font-bold"> Dynamic Path Mapping.</span>
-              </p>
-
-              <div className="pt-4">
-                <Link href="/diagnostic" className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-black uppercase text-xs flex items-center gap-3 w-fit hover:bg-[#111827] transition-all group">
-                  Start Diagnostic <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-              </div>
-            </div>
-
-            {/* GRAPHIC AREA */}
-            <div className="relative flex justify-center lg:justify-end">
-              <div className="bg-slate-50 w-[450px] aspect-square rounded-[4rem] flex items-center justify-center relative overflow-hidden">
-                 <Timer size={180} className="text-white opacity-40 animate-pulse" />
-                 <div className="absolute top-10 right-10 bg-white p-6 rounded-[2rem] shadow-2xl border border-slate-50">
-                    <p className="text-blue-600 text-[9px] font-black uppercase tracking-widest mb-1">Success Rate</p>
-                    <p className="text-3xl font-black text-slate-900 tracking-tighter italic">98.4%</p>
-                 </div>
-              </div>
-            </div>
-
+      {/* Features Grid */}
+      <section className="bg-slate-50 py-20 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="space-y-4">
+            <Zap className="text-blue-600" size={32} />
+            <h3 className="font-bold text-xl">Temporal Optimization</h3>
+            <p className="text-sm text-slate-500">Reduce training time by up to 30% by verifying prior technical knowledge.</p>
+          </div>
+          <div className="space-y-4">
+            <Globe className="text-blue-600" size={32} />
+            <h3 className="font-bold text-xl">Bilingual Mapping</h3>
+            <p className="text-sm text-slate-500">Curriculum mapped for technical fluency in both English and French.</p>
+          </div>
+          <div className="space-y-4">
+            <ShieldCheck className="text-blue-600" size={32} />
+            <h3 className="font-bold text-xl">Employer Verified</h3>
+            <p className="text-sm text-slate-500">Tamper-proof certificates with QR-code verification for industry trust.</p>
           </div>
         </div>
-      </main>
+      </section>
     </div>
   )
 }
