@@ -1,27 +1,25 @@
 "use client"
-export const dynamic = 'force-dynamic';
 import React, { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
-import CourseSidebar from "@/components/CourseSidebar"
 import TopNav from '@/components/TopNav'
-import { BarChart3 } from 'lucide-react'
+import CourseSidebar from "@/components/CourseSidebar"
 
 export default function StudentPortal() {
-  const [studentData, setStudentData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false)
+  const [studentData, setStudentData] = useState(null)
 
-  // If we are building or loading, show a safe skeleton state
-  if (!studentData) {
-    return (
-      <div className="min-h-screen bg-slate-50">
-        <TopNav />
-        <div className="flex">
-          <CourseSidebar />
-          <main className="flex-1 p-8">Initializing Cobel AI Engine...</main>
-        </div>
-      </div>
-    );
+  // This ONLY runs in the browser, never during 'next build'
+  useEffect(() => {
+    setMounted(true)
+    // Your Supabase fetch logic would go here
+  }, [])
+
+  // If we are prerendering on Vercel, render a safe 'Loading' shell
+  if (!mounted) {
+    return <div className="min-h-screen bg-slate-50"><TopNav /><div className="flex"><CourseSidebar /><main className="p-8">Loading Portal...</main></div></div>
   }
+
+  // Now it is safe to access studentData because this code only runs in the browser
+  const timeSaved = studentData?.timeSaved || 0
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -29,22 +27,13 @@ export default function StudentPortal() {
       <div className="flex">
         <CourseSidebar />
         <main className="flex-1 p-8">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Student Dashboard</h1>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-blue-100 text-blue-600 rounded-lg">
-                  <BarChart3 size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-slate-500 uppercase font-semibold">Temporal Optimization</p>
-                  <h2 className="text-xl font-bold">{studentData?.timeSaved || 0} Hours Saved</h2>
-                </div>
-              </div>
-            </div>
+          <h1 className="text-2xl font-bold">Cobel LMS Dashboard</h1>
+          <div className="mt-4 p-6 bg-white rounded-xl shadow-sm border">
+            <h2 className="text-lg font-semibold text-blue-600">Temporal Optimization</h2>
+            <p className="text-3xl font-bold">{timeSaved} Hours Saved</p>
           </div>
         </main>
       </div>
     </div>
-  );
+  )
 }
