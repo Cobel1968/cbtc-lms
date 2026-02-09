@@ -1,4 +1,14 @@
-﻿.env
+# Build folders
+.next/
+out/
+build/
+
+# Private Keys (CRITICAL)
+.env
 .env.local
+.env.production
+.env.development
+
+# OS files
 node_modules/
-*.log
+.DS_Store
