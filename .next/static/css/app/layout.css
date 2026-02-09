@@ -639,6 +639,9 @@ video {
 .top-2\.5 {
   top: 0.625rem;
 }
+.top-3 {
+  top: 0.75rem;
+}
 .z-10 {
   z-index: 10;
 }
@@ -1055,6 +1058,9 @@ video {
 .flex-shrink-0 {
   flex-shrink: 0;
 }
+.shrink-0 {
+  flex-shrink: 0;
+}
 .flex-grow {
   flex-grow: 1;
 }
@@ -1254,6 +1260,11 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
