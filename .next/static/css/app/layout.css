@@ -3416,6 +3416,11 @@ body {
   background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-red-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:fill-cbtc-blue\/10:hover {
   fill: rgb(0 92 151 / 0.1);
 }
