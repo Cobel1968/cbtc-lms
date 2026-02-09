@@ -11,6 +11,8 @@ export default function SystemIntegrity() {
     activeCertifications: 128
   }
 
+}
+
   return (
     <div className="flex bg-[#F1F5F9] min-h-screen">
       <Sidebar />
@@ -56,6 +58,8 @@ export default function SystemIntegrity() {
 }
 
 function MetricCard({ title, value, icon }: { title: string, value: string, icon: React.ReactNode }) {
+}
+
   return (
     <div className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100">
       <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center mb-4">{icon}</div>

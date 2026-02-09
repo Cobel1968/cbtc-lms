@@ -16,6 +16,8 @@ export default function CourseInspector() {
     milestones: ["Diagnostic", "Bilingual Audit", "Temporal Optimization"]
   }
 
+}
+
   return (
     <div className="flex bg-[#F8FAFC] min-h-screen">
       <Sidebar />

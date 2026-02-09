@@ -1,4 +1,4 @@
-﻿import HandwritingSummary from './HandwritingSummary';
+import HandwritingSummary from './HandwritingSummary';
 'use client';
 export const dynamic = 'force-dynamic';
 import React, { useEffect, useState } from 'react';
@@ -31,8 +31,7 @@ export const AdminDashboard = () => {
     setLoading(false);
   };
 
-  if (loading) return <div className="p-10 font-mono text-center">LOADING COBEL ANALYTICS...</div>
-<HandwritingSummary studentData={null} />;
+  if (loading) { return <div className="p-10 font-mono text-center">LOADING COBEL ANALYTICS...</div>; }
 
   return (
     <div className="p-8 bg-white min-h-screen">
@@ -73,4 +72,5 @@ export const AdminDashboard = () => {
 <HandwritingSummary studentData={null} />
   );
 }
+
 

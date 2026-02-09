@@ -9,6 +9,7 @@ export default function StudentFluencyMapping() {
     { term: "Pressure Valve", fr: "Soupape de Pression", mastery: 40, status: "Review Required" },
     { term: "Circuit Breaker", fr: "Disjoncteur", mastery: 88, status: "Verified" }
   ]
+}
 
   return (
     <div className="flex bg-[#F1F5F9] min-h-screen">

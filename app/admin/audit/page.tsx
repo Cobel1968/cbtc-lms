@@ -34,6 +34,8 @@ export default function GlobalAudit() {
     }, 100)
   }
 
+}
+
   return (
     <GodModeGuard>
     <div className="flex bg-[#020617] min-h-screen text-slate-200">
