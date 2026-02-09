@@ -1,5 +1,4 @@
-import CourseSidebar from "@/components/CourseSidebar"
-"use client"
+"use client"`nimport
 import React, { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import TopNav from '@/components/TopNav'
