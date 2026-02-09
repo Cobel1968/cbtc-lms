@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { ChevronLeft, Plus, Settings, UserPlus, ShieldCheck, GraduationCap } from 'lucide-react';

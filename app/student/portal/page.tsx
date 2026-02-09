@@ -1,4 +1,4 @@
-"use client"`nimport
+"use client"
 import React, { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import TopNav from '@/components/TopNav'
@@ -81,3 +81,4 @@ export default function StudentPortal() {
     </div>
   )
 }
+

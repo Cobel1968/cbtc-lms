@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 import React from 'react'
 import AdminDashboard from '@/components/dashboard/admindashboard'
 
@@ -17,3 +17,4 @@ export default function AdminPage() {
     </div>
   )
 }
+
