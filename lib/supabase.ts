@@ -9,19 +9,27 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 // 2. Compatibility Export for Client Components
 export const createClientComponentClient = () => createClient(supabaseUrl, supabaseAnonKey)
 
-// 3. Build-Safe Client (Prevents 500 errors during Vercel Build)
+// 3. Named Export for Enrollments (Fixed for API routes)
+export const createEnrollment = async (studentId: string, courseId: string) => {
+  return await supabase.from('enrollments').insert([{ 
+    student_id: studentId, 
+    course_id: courseId,
+    status: 'active'
+  }])
+}
+
+// 4. User Logic
+export const createUser = async (email: string, fullName: string, role: string) => {
+  return await supabase.from('profiles').insert([{ email, full_name: fullName, role }])
+}
+
+// 5. Build-Safe Client Utility
 export const createBuildSafeClient = () => {
   if (!supabaseUrl || !supabaseAnonKey) return null
   return supabase
 }
 
-// 4. User & Enrollment Logic for B2B Registration
-export const createUser = async (email: string, fullName: string, role: string) => {
-  return await supabase.from('profiles').insert([{ email, full_name: fullName, role }])
-}
-
+// Legacy 'db' wrapper for backward compatibility
 export const db = {
-  createEnrollment: async (studentId: string, courseId: string) => {
-    return await supabase.from('enrollments').insert([{ student_id: studentId, course_id: courseId }])
-  }
+  createEnrollment
 }
