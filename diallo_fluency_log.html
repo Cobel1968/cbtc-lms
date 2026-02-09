@@ -1,0 +1,53 @@
+﻿<html>
+<head>
+    <style>
+        body { font-family: 'Helvetica Neue', sans-serif; padding: 40px; background-color: #fdfdfd; }
+        .log-container { border: 2px solid #2c3e50; padding: 0; border-radius: 10px; overflow: hidden; }
+        .log-header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #ecf0f1; color: #2c3e50; padding: 15px; text-align: left; border-bottom: 2px solid #bdc3c7; }
+        td { padding: 15px; border-bottom: 1px solid #eee; }
+        .badge { background: #3498db; color: white; padding: 3px 8px; border-radius: 5px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+<nav style='background: #2c3e50; padding: 15px; display: flex; gap: 20px; align-items: center; border-bottom: 3px solid #3498db; margin-bottom: 20px;'>
+    <a href='admin_global_timeline.html' style='color: white; text-decoration: none; font-weight: bold;'>🏠 Admin Home</a>
+    <a href='trainer_console.html' style='color: white; text-decoration: none;'>👨‍🏫 Trainer Console</a>
+    <a href='resource_monitor.html' style='color: white; text-decoration: none;'>📊 Resource Monitor</a>
+    <div style='flex-grow: 1;'></div>
+    <button onclick='window.history.back()' style='background: #7f8c8d; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer;'>⬅️ Back</button>
+</nav>
+    <div class='log-container'>
+        <div class='log-header'>
+            <h2 style='margin:0;'>Bilingual Technical Fluency Log</h2>
+            <p style='margin:5px 0 0 0;'>Cobel Business Training Center | Student: M. Diallo</p>
+        </div>
+        <table>
+            <tr>
+                <th>Vocational Term (FR)</th>
+                <th>Technical Term (EN)</th>
+                <th>Industry Standard</th>
+                <th>Verification</th>
+            </tr>
+            <tr>
+                    <td>Maintenance Préventive</td>
+                    <td><strong>Preventive Maintenance</strong></td>
+                    <td><span class='badge'>ISO 55000</span></td>
+                    <td style='color:#27ae60;'>98%</td>
+                </tr> <tr>
+                    <td>Procédures de Sortie</td>
+                    <td><strong>Check-out Procedures</strong></td>
+                    <td><span class='badge'>SOP-HOSP-04</span></td>
+                    <td style='color:#27ae60;'>92%</td>
+                </tr> <tr>
+                    <td>Cycle de vie des actifs</td>
+                    <td><strong>Asset Lifecycle</strong></td>
+                    <td><span class='badge'>ISO 55001</span></td>
+                    <td style='color:#27ae60;'>Verified via Gap Logic</td>
+                </tr>
+        </table>
+    </div>
+</body>
+</html>
+

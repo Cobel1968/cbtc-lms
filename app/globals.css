@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cobel-navy: #111827;
+  --cobel-blue: #2563eb;
+  --cobel-slate: #f8fafc;
+}
+
+body {
+  background-color: var(--cobel-slate);
+  color: var(--cobel-navy);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cobel-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.cobel-card:hover {
+  border-color: var(--cobel-blue);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}

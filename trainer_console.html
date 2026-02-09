@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .trainer-container { max-width: 1000px; margin: auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 30px; }
+        .class-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #34495e; padding-bottom: 15px; }
+        .student-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; padding: 15px; border-bottom: 1px solid #eee; align-items: center; }
+        .student-row:hover { background: #f9f9f9; }
+        .btn-validate { background: #27ae60; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
+        .btn-override { background: #e67e22; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
+        .badge { font-size: 0.8em; padding: 4px 8px; border-radius: 12px; }
+        .status-verified { background: #dff0d8; color: #3c763d; }
+    </style>
+</head>
+<body>
+<script>
+    (function() {
+        var pass = prompt("CBTC Security Access Required. Enter PIN:");
+        if (pass !== "CBTC2026") {
+            document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:100px;'>ACCESS DENIED: Unauthorized Entry Attempt Logged.</h1>";
+            document.body.style.background = "#000";
+        }
+    })();
+</script>
+<nav style='background: #2c3e50; padding: 15px; display: flex; gap: 20px; align-items: center; border-bottom: 3px solid #3498db; margin-bottom: 20px;'>
+    <a href='admin_global_timeline.html' style='color: white; text-decoration: none; font-weight: bold;'>🏠 Admin Home</a>
+    <a href='trainer_console.html' style='color: white; text-decoration: none;'>👨‍🏫 Trainer Console</a>
+    <a href='resource_monitor.html' style='color: white; text-decoration: none;'>📊 Resource Monitor</a>
+    <div style='flex-grow: 1;'></div>
+    <button onclick='window.history.back()' style='background: #7f8c8d; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer;'>⬅️ Back</button>
+</nav>
+    <div class='trainer-container'>
+        <div class='class-header'>
+            <h2>Trainer Console: March 2026 Batch</h2>
+            <span class='badge' style='background:#34495e; color:white;'>Course: Hospitality Management</span>
+        </div>
+        
+        <div class='student-row' style='font-weight:bold; color:#7f8c8d; border-bottom: 2px solid #eee;'>
+            <div>Student Name</div>
+            <div>Bilingual Level</div>
+            <div>Time Saved</div>
+            <div>Actions</div>
+        </div>
+
+        <div class='student-row'>
+            <div><strong>Soro, Jean-Paul</strong></div>
+            <td><span class='badge status-verified'>Elite</span></td>
+            <td>34.43 hrs</td>
+            <td><button class='btn-validate'>View Log</button></td>
+        </div>
+
+        <div class='student-row'>
+            <div><strong>Diallo, Mamadou</strong></div>
+            <td><span class='badge status-verified'>Technical</span></td>
+            <td>6.75 hrs</td>
+            <td><button class='btn-override'>Edit Gaps</button></td>
+        </div>
+
+        <div class='student-row'>
+            <div><strong>Kouassi, Adjoua</strong></div>
+            <td><span class='badge' style='background:#eee;'>Foundational</span></td>
+            <td>0.00 hrs</td>
+            <td><button class='btn-validate' style='background:#3498db;'>Run Diagnostic</button></td>
+        </div>
+    </div>
+</body>
+</html>
+
+

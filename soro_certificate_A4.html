@@ -1,0 +1,76 @@
+﻿<html>
+<head>
+    <style>
+        @page { size: A4; margin: 0; }
+        body { font-family: 'Segoe UI', serif; background: #f0f0f0; padding: 0; margin: 0; }
+        .a4-page { 
+            width: 210mm; height: 297mm; padding: 20mm; 
+            margin: 10mm auto; background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-sizing: border-box; border: 10px double #e5e4e2;
+            position: relative; display: flex; flex-direction: column;
+        }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .logo { width: 150px; height: 60px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .qr-code { width: 80px; height: 80px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+        
+        h1 { color: #2c3e50; font-size: 32pt; margin: 40px 0 10px 0; text-align: center; text-transform: uppercase; }
+        .elite-tier { text-align: center; color: #b4b4b4; letter-spacing: 4px; font-weight: bold; margin-bottom: 30px; }
+        
+        .main-content { text-align: center; font-size: 14pt; flex-grow: 1; }
+        .student-name { font-size: 28pt; color: #333; border-bottom: 2px solid #333; display: inline-block; padding: 0 40px; }
+        
+        .verification-grid { display: flex; justify-content: space-around; margin-top: 50px; text-align: left; font-size: 11pt; }
+        
+        .signature-row { display: flex; justify-content: space-around; margin-top: 80px; }
+        .sig-box { border-top: 1px solid #333; width: 200px; text-align: center; padding-top: 5px; font-size: 12pt; }
+    </style>
+</head>
+<body>
+    <div class='a4-page'>
+        <div class='header'>
+            <div class='logo'>CORPORATE LOGO</div>
+            <div class='qr-code'>VERIFICATION QR</div>
+        </div>
+
+        <div class='main-content'>
+            <h1>Certificate of Competency</h1>
+            <p class='elite-tier'>BILINGUAL-ELITE TIER</p>
+            
+            <p>This is to certify that</p>
+            <div class='student-name'>Mr. Soro</div>
+            
+            <p>Has successfully mastered the vocational curriculum for</p>
+            <h3>Professional Asset Management & Maintenance</h3>
+            
+            <p>Verified Technical Fluency Score: <strong>98%</strong><br>
+            Temporal Optimization Achieved: <strong>34.43 Hours</strong></p>
+            
+            <div class='verification-grid'>
+                <div>
+                    <strong>Bilingual Lexicon Mastery:</strong>
+                    <ul>
+                        <li>Preventive Maintenance  Maintenance Préventive</li>
+                        <li>Asset Lifecycle  Cycle de vie des actifs</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>Diagnostic Source:</strong>
+                    <p>Cobel AI Engine v3.0<br>Handwriting Analysis ID: #CB-7721</p>
+                </div>
+            </div>
+        </div>
+
+        <div class='signature-row'>
+            <div class='sig-box'>
+                <strong>Abel C.</strong><br>
+                Director, CBTC
+            </div>
+            <div class='sig-box'>
+                <strong>Lead Trainer</strong><br>
+                Vocational Department
+            </div>
+        </div>
+    </div>
+</body>
+</html>

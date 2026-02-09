@@ -1,0 +1,101 @@
+﻿[
+    {
+        "ID":  1,
+        "Name":  "Asset_Management_ESP",
+        "Baseline":  320,
+        "Terms":  [
+                      "Asset Lifecycle",
+                      "Risk Control",
+                      "Inventory",
+                      "Preventive Maintenance"
+                  ]
+    },
+    {
+        "ID":  2,
+        "Name":  "Hospitality_ESP",
+        "Baseline":  280,
+        "Terms":  [
+                      "Front Office",
+                      "Concierge Services",
+                      "Housekeeping Standards",
+                      "Guest Relations"
+                  ]
+    },
+    {
+        "ID":  3,
+        "Name":  "Financial_Literacy",
+        "Baseline":  200,
+        "Terms":  [
+                      "Balance Sheet",
+                      "Cash Flow",
+                      "Profit and Loss",
+                      "Asset Depreciation"
+                  ]
+    },
+    {
+        "ID":  4,
+        "Name":  "Legal_Framework",
+        "Baseline":  180,
+        "Terms":  [
+                      "Labour Code",
+                      "Compliance",
+                      "Liability",
+                      "Contractual Obligation"
+                  ]
+    },
+    {
+        "ID":  5,
+        "Name":  "Digital_Literacy",
+        "Baseline":  150,
+        "Terms":  [
+                      "Cloud",
+                      "Cybersecurity",
+                      "Data Governance",
+                      "API"
+                  ]
+    },
+    {
+        "ID":  6,
+        "Name":  "Health_Safety",
+        "Baseline":  120,
+        "Terms":  [
+                      "Risk Assessment",
+                      "PPE",
+                      "Incident Reporting",
+                      "Ergonomics"
+                  ]
+    },
+    {
+        "ID":  7,
+        "Name":  "Supply_Chain",
+        "Baseline":  240,
+        "Terms":  [
+                      "Procurement",
+                      "Logistics",
+                      "Quality Assurance",
+                      "Lead Time"
+                  ]
+    },
+    {
+        "ID":  8,
+        "Name":  "Leadership",
+        "Baseline":  160,
+        "Terms":  [
+                      "Conflict Resolution",
+                      "KPI",
+                      "Strategic Planning",
+                      "Change Management"
+                  ]
+    },
+    {
+        "ID":  9,
+        "Name":  "Customer_Service",
+        "Baseline":  140,
+        "Terms":  [
+                      "CRM",
+                      "SLA",
+                      "Retention",
+                      "Escalation"
+                  ]
+    }
+]

@@ -1,0 +1,49 @@
+﻿<html>
+<head>
+    <title>Cobel Business Training Center</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fdfdfd; }
+        header { background: #fff; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .hero { background: #2c3e50; color: white; padding: 60px 20px; text-align: center; }
+        
+        /* Innovation Cards */
+        .innovation-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 50px; max-width: 1200px; margin: auto; }
+        .i-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #3498db; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+        .i-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2); }
+        .i-card h3 { color: #2c3e50; margin-top: 0; }
+        .i-card p { font-size: 0.95em; color: #7f8c8d; line-height: 1.5; }
+        .i-card .badge { position: absolute; top: 10px; right: 10px; font-size: 0.7em; background: #e8f4fd; color: #3498db; padding: 5px 10px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="public/logo.png" style="height:50px;">
+        <nav>
+            <a href="login.html" style="background:#3498db; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Login to Portal</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Du Banc Au Travail</h1>
+        <p>AI-Powered Vocational Excellence</p>
+    </div>
+
+    <div class="innovation-container">
+        <div class="i-card">
+            <span class="badge">Phase 1</span>
+            <h3>Multi-Dimensional Diagnostic</h3>
+            <p>Analyzes baseline technical density and language fluency to identify the precise starting point for every trainee.</p>
+        </div>
+        <div class="i-card" style="border-top-color: #27ae60;">
+            <span class="badge">Phase 2</span>
+            <h3>Dynamic Path Mapping</h3>
+            <p>Adaptive HTML Injection reconfigures the curriculum in real-time based on verified knowledge gaps.</p>
+        </div>
+        <div class="i-card" style="border-top-color: #e67e22;">
+            <span class="badge">Phase 3</span>
+            <h3>Temporal Optimization</h3>
+            <p>Eliminates redundant training hours, reducing graduation time by up to 25% while maintaining technical standards.</p>
+        </div>
+    </div>
+</body>
+</html>

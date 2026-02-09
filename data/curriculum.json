@@ -1,0 +1,20 @@
+﻿{
+  "programs": [
+    {
+      "id": "ESP-MGMT",
+      "title": "ESP: Management & Leadership",
+      "modules": [
+        { "id": "M-1", "name": "Strategic Leadership", "keywords": ["Stakeholders", "KPIs"] },
+        { "id": "M-2", "name": "Change Management", "keywords": ["Agility", "Pivot"] }
+      ]
+    },
+    {
+      "id": "ESP-OG",
+      "title": "ESP: Oil & Gas",
+      "modules": [
+        { "id": "OG-1", "name": "HSE Induction", "keywords": ["PPE", "LOTO"] },
+        { "id": "OG-2", "name": "Drilling Operations", "keywords": ["Borehole", "Forage"] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+﻿<html>
+<head>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #34495e; color: white; padding: 20px; }
+        .review-card { background: white; color: #333; border-radius: 12px; display: flex; overflow: hidden; height: 500px; }
+        .scan-side { flex: 1; background: #eee; padding: 20px; border-right: 2px solid #bdc3c7; display: flex; flex-direction: column; }
+        .data-side { flex: 1; padding: 20px; background: #fdfdfd; }
+        .handwriting-sample { border: 2px solid #7f8c8d; background: #fff; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Brush Script MT', cursive; font-size: 2em; color: #2c3e50; text-decoration: underline; }
+        .extraction-row { display: flex; justify-content: space-between; margin-bottom: 10px; padding: 10px; background: #ecf0f1; border-radius: 5px; }
+        .btn-confirm { background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .btn-reject { background: #e74c3c; color: white; border: none; padding: 5px; cursor: pointer; border-radius: 3px; }
+    </style>
+</head>
+<body>
+<nav style='background: #2c3e50; padding: 15px; display: flex; gap: 20px; align-items: center; border-bottom: 3px solid #3498db; margin-bottom: 20px;'>
+    <a href='admin_global_timeline.html' style='color: white; text-decoration: none; font-weight: bold;'>🏠 Admin Home</a>
+    <a href='trainer_console.html' style='color: white; text-decoration: none;'>👨‍🏫 Trainer Console</a>
+    <a href='resource_monitor.html' style='color: white; text-decoration: none;'>📊 Resource Monitor</a>
+    <div style='flex-grow: 1;'></div>
+    <button onclick='window.history.back()' style='background: #7f8c8d; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer;'>⬅️ Back</button>
+</nav>
+    <h2>Verification Hub: M. Diallo - Assessment #HW-77</h2>
+    <div class='review-card'>
+        <div class='scan-side'>
+            <h4>Original Handwritten Input</h4>
+            <div class='handwriting-sample'>
+                Maintnance Prevantive...
+            </div>
+            <p style='font-size: 0.8em; color: #7f8c8d;'>OCR Confidence: 89%</p>
+        </div>
+        <div class='data-side'>
+            <h4>AI Suggested Mapping</h4>
+            <div class='extraction-row'>
+                <span><strong>Term:</strong> Preventive Maintenance</span>
+                <button class='btn-reject'>X</button>
+            </div>
+            <div class='extraction-row'>
+                <span><strong>Term:</strong> Check-out Procedures</span>
+                <button class='btn-reject'>X</button>
+            </div>
+            <p style='color: #e67e22;'><em>Missing: "Bilingual Trade Documentation" (Not detected in scan)</em></p>
+            
+            <div style='margin-top: 50px;'>
+                <label>Trainer Notes:</label>
+                <textarea style='width: 100%; height: 60px; margin-top: 5px;' placeholder='Add feedback for Diallo...'></textarea>
+                <button class='btn-confirm'>Approve & Update Curriculum</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

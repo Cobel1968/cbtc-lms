@@ -1,0 +1,38 @@
+﻿<html>
+<head>
+    <title>Login | Cobel AI Engine</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #2c3e50; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: center; width: 350px; }
+        .logo-small { height: 80px; margin-bottom: 20px; }
+        select, input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        .btn-login { width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-login:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <img src="public/logo.png" class="logo-small">
+        <h3>Secure Access Portal</h3>
+        <select id="actorRole">
+            <option value="student">Student Portal</option>
+            <option value="trainer">Trainer Console</option>
+            <option value="admin">System Administration</option>
+        </select>
+        <input type="password" id="pin" placeholder="Enter Security PIN">
+        <button class="btn-login" onclick="handleLogin()">Access Dashboard</button>
+    </div>
+
+    <script>
+        function handleLogin() {
+            const role = document.getElementById('actorRole').value;
+            const pin = document.getElementById('pin').value;
+            if (pin === "CBTC2026") {
+                if (role === 'student') window.location.href = 'diallo_fluency_log.html';
+                else if (role === 'trainer') window.location.href = 'trainer_console.html';
+                else window.location.href = 'admin_global_timeline.html';
+            } else { alert("Invalid Credentials"); }
+        }
+    </script>
+</body>
+</html>

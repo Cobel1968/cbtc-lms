@@ -1,0 +1,7 @@
+﻿COURSE_ID | ENGLISH_TERM | FRENCH_TERM
+5 | Fixed-term Contract | CDD (Contrat à Durée Déterminée)
+5 | Labor Code | Code du Travail
+6 | Cash Flow | Flux de Trésorerie
+6 | Balance Sheet | Bilan Actif/Passif
+9 | Process Standardization | Standardisation des Processus
+9 | Operating Manual | Manuel Opérationnel

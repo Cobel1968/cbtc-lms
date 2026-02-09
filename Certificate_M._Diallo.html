@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+    <style>
+        @page { size: A4; margin: 0; }
+        body { font-family: 'Segoe UI', serif; background: #555; padding: 0; margin: 0; }
+        .a4-page { 
+            width: 210mm; height: 297mm; padding: 20mm; 
+            margin: 10mm auto; background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-sizing: border-box; border: 12px double #2c3e50;
+            position: relative; display: flex; flex-direction: column;
+        }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .corporate-logo { max-width: 200px; max-height: 80px; object-fit: contain; }
+        .qr-code-img { width: 100px; height: 100px; }
+        
+        h1 { color: #2c3e50; font-size: 36pt; margin: 20px 0 5px 0; text-align: center; font-family: 'Georgia', serif; }
+        .elite-tier { text-align: center; color: #b4b4b4; letter-spacing: 6px; font-weight: bold; margin-bottom: 40px; font-size: 14pt; }
+        
+        .main-content { text-align: center; flex-grow: 1; border: 1px solid #f9f9f9; padding: 20px; }
+        .student-name { font-size: 32pt; color: #333; font-family: 'Georgia', serif; padding: 10px 0; margin: 20px 0; border-bottom: 1px solid #ccc; display: inline-block; width: 80%; }
+        
+        .stats-box { background: #fdfdfd; border: 1px solid #eee; padding: 20px; margin: 30px auto; width: 90%; display: flex; justify-content: space-around; text-align: left; }
+        .stat-item { font-size: 10pt; color: #666; }
+        .stat-value { font-size: 12pt; font-weight: bold; color: #2c3e50; display: block; }
+
+        .signature-row { display: flex; justify-content: space-around; margin-top: 50px; padding-bottom: 30px; }
+        .sig-box { border-top: 1px solid #333; width: 220px; text-align: center; padding-top: 10px; font-size: 11pt; }
+    </style>
+</head>
+<body>
+    <div class='a4-page'>
+        <div class='header'>
+            <img src='public/logo.png' class='corporate-logo' alt='Cobel Business Training Center Logo'>
+            <img class='qr-code-img' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fcbtc-lms.com%2Fverify%3Fid%3DM._Diallo' alt='Verification QR'>
+        </div>
+
+        <div class='main-content'>
+            <h1>Certificate of Achievement</h1>
+            <p class='elite-tier'>INTERMEDIATE TECHNICAL MASTERY</p>
+            
+            <p style='font-size: 14pt;'>This is to officially recognize the vocational excellence of</p>
+            <div class='student-name'>M. Diallo</div>
+            
+            <p style='font-size: 13pt; max-width: 80%; margin: 0 auto;'>For successfully navigating the <strong>Professional Asset Management</strong> track with a focus on <strong>Bilingual Technical Fluency</strong>.</p>
+            
+            <div class='stats-box'>
+                <div class='stat-item'>TIME SAVED<span class='stat-value'>24% Efficiency Gain</span></div>
+                <div class='stat-item'>OPTIMIZED ETA<span class='stat-value'>34.43 Training Hours</span></div>
+                <div class='stat-item'>DIAGNOSTIC ID<span class='stat-value'>#HW-77-SORO</span></div>
+            </div>
+        </div>
+
+        <div class='signature-row'>
+            <div class='sig-box'>
+                <strong>Abel C.</strong><br>Founder, Cobel AI
+            </div>
+            <div class='sig-box'>
+                <strong>08 February 2026</strong><br>Date of Issuance
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+

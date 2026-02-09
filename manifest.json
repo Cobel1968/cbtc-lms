@@ -1,0 +1,11 @@
+﻿{
+  "project_name": "Cobel Business Training Center",
+  "innovation": "Adaptive Learning Algorithm",
+  "courses": [
+    {"id": 5, "name": "Employment Legal Framework (Ivory Coast)", "hours": 40},
+    {"id": 6, "name": "Automated Book-keeping (Informal Sector)", "hours": 60},
+    {"id": 7, "name": "Marketing Techniques for Informal Business", "hours": 45},
+    {"id": 8, "name": "Budget & Finance Awareness", "hours": 40},
+    {"id": 9, "name": "Standardizing Business Operations", "hours": 50}
+  ]
+}

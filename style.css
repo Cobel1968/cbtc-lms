@@ -1,0 +1,11 @@
+﻿body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 50px; }
+.adaptive-module { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 8px solid #007bff; max-width: 500px; }
+.high-density { border-left: 8px solid #ffd700; background: #fffdf0; }
+h3 { color: #333; margin-top: 0; }
+.bilingual-support { background: #e7f3ff; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #0056b3; }
+.challenge-mode { background: #fff4cc; padding: 10px; border-radius: 6px; font-size: 0.9em; color: #856404; }
+.btn-primary { background: #007bff; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
+.btn-gold { background: #ffd700; color: #333; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
+.btn-gold:hover { background: #e6c200; }
+.bilingual-elite { border-left: 8px solid #e5e4e2; background: #fafaff; color: #2c3e50; }
+.btn-platinum { background: linear-gradient(135deg, #e5e4e2 0%, #b4b4b4 100%); color: #333; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }

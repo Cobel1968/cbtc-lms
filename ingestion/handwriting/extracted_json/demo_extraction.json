@@ -1,0 +1,9 @@
+﻿[
+    {
+        "student_id": "KOUASSI-2026",
+        "raw_text_detected": "Maintance Prevantive, Inventory, Check-out",
+        "confidence_score": 0.89,
+        "mapped_lexicon_terms": ["Preventive Maintenance", "Inventory", "Check-out"],
+        "bilingual_fluency_increment": 0.15
+    }
+]

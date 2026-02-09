@@ -1,0 +1,109 @@
+﻿<html>
+<head>
+    <title>Analytics Deep Dive | Cobel AI Engine</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; margin: 0; padding: 40px; }
+        .report-container { background: white; max-width: 1100px; margin: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        /* Header & Logo */
+        .report-header { background: #2c3e50; color: white; padding: 30px; display: flex; align-items: center; justify-content: space-between; }
+        .logo-box { display: flex; align-items: center; gap: 15px; }
+        .logo-img { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #3498db; font-weight: bold; border: 2px solid #3498db; }
+        
+        /* Table Styles */
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th { background: #3498db; color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #eee; color: #34495e; }
+        tr:hover { background: #f9f9f9; }
+        
+        .progress-bar { background: #eee; border-radius: 10px; height: 10px; width: 100px; overflow: hidden; display: inline-block; margin-right: 10px; }
+        .progress-fill { background: #27ae60; height: 100%; }
+        .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 0.8em; font-weight: bold; }
+        .high-priority { background: #fff3e0; color: #e65100; }
+        .verified { background: #e8f5e9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <div class="report-header">
+            <div class="logo-box">
+                <img src="public/logo.png" alt="CBTC Logo" style="height: 60px; width: auto; vertical-align: middle; border-radius: 5px;">
+                <div>
+                    <h2 style="margin:0;">Analytics Deep Dive</h2>
+                    <p style="margin:0; opacity:0.8;">Student Performance & Temporal Optimization</p>
+                </div>
+            </div>
+            <button onclick="exportToCSV()" style="background:#27ae60; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; margin-right:10px;"> Export to CSV</button> <button onclick='window.history.back()' style="background:#3498db; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Back to Dashboard</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Status</th>
+                    <th>Course Progress</th>
+                    <th>Time Saved</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Soro, Jean-Paul</strong></td>
+                    <td><span class="status-pill verified">Verified: Elite</span></td>
+                    <td><div class="progress-bar"><div class="progress-fill" style="width:100%;"></div></div> 100%</td>
+                    <td><strong>34.43 Hours</strong></td>
+                    <td>soro@cbtc.com</td>
+                </tr>
+                <tr>
+                    <td><strong>Diallo, Mamadou</strong></td>
+                    <td><span class="status-pill high-priority">High Priority: Gaps</span></td>
+                    <td><div class="progress-bar"><div class="progress-fill" style="width:45%;"></div></div> 45%</td>
+                    <td><strong>6.75 Hours</strong></td>
+                    <td>diallo@cbtc.com</td>
+                </tr>
+                <tr>
+                    <td><strong>Kouassi, Adjoua</strong></td>
+                    <td><span class="status-pill" style="background:#eee;">Diagnostic Pending</span></td>
+                    <td><div class="progress-bar"><div class="progress-fill" style="width:5%;"></div></div> 5%</td>
+                    <td><strong>0.00 Hours</strong></td>
+                    <td>kouassi@cbtc.com</td>
+                </tr>
+                <tr>
+                    <td><strong>Traoré, Aisha</strong></td>
+                    <td><span class="status-pill verified">Verified: Technical</span></td>
+                    <td><div class="progress-bar"><div class="progress-fill" style="width:22%;"></div></div> 22%</td>
+                    <td><strong>5.10 Hours</strong></td>
+                    <td>traore@cbtc.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    function exportToCSV() {
+        let table = document.querySelector("table");
+        let rows = Array.from(table.rows);
+        let csvContent = "data:text/csv;charset=utf-8,";
+
+        rows.forEach(row => {
+            let cols = Array.from(row.cells).map(cell => {
+                // Remove HTML tags and commas for clean CSV data
+                return '"' + cell.innerText.replace(/"/g, '""') + '"';
+            });
+            csvContent += cols.join(",") + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "CBTC_Temporal_Optimization_Report.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+</body>
+</html>
+
+
