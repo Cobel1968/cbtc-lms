@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase'
 import { ShieldCheck, Map, AlertTriangle, UserCheck } from 'lucide-react'
 
 export default function IntegrityLog() {
-  const [logs, setLogs] = useState<any[]>([])
+  const [logs, setLogs] = useState([])
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -23,35 +23,20 @@ export default function IntegrityLog() {
         <ShieldCheck className="text-blue-600" />
         <h2 className="text-xl font-bold text-slate-800">Security & Integrity Audit</h2>
       </div>
-
       <div className="space-y-3">
-        {logs.length === 0 ? (
-          <p className="text-slate-400 text-sm italic">No security events recorded yet.</p>
-        ) : (
-          logs.map(log => (
-            <div key={log.id} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
-              <div className="flex items-center gap-4">
-                <div className={p-2 rounded-lg \}>
-                  {log.verification_type === 'Biometric' ? <UserCheck size={20} /> : <Map size={20} />}
-                </div>
-                <div>
-                  <p className="font-bold text-slate-800 font-mono text-sm">\</p>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-wide">\ Check  \</p>
-                </div>
+        {logs.map((log: any) => (
+          <div key={log.id} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
+            <div className="flex items-center gap-4">
+              <div className={p-2 rounded-lg }>
+                {log.verification_type === 'Biometric' ? <UserCheck size={20} /> : <Map size={20} />}
               </div>
-              <div className="text-right">
-                <p className="text-[10px] text-slate-400 font-mono mb-1">
-                  {new Date(log.timestamp).toLocaleString()}
-                </p>
-                {log.status === 'Failed' && (
-                  <span className="flex items-center gap-1 text-red-500 text-[10px] font-bold">
-                    <AlertTriangle size={10} /> FLAG TRIGGERED
-                  </span>
-                )}
+              <div>
+                <p className="font-bold text-slate-800 font-mono text-sm">{log.profiles?.full_name || 'System'}</p>
+                <p className="text-[10px] text-slate-500 uppercase tracking-wide">{log.verification_type} Check  {log.status}</p>
               </div>
             </div>
-          ))
-        )}
+          </div>
+        ))}
       </div>
     </div>
   )
