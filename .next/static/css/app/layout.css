@@ -1593,6 +1593,9 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(202 138 4 / var(--tw-border-opacity, 1));
 }
+.border-green-400\/30 {
+  border-color: rgb(74 222 128 / 0.3);
+}
 .border-b-indigo-600 {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(79 70 229 / var(--tw-border-opacity, 1));
@@ -1938,6 +1941,9 @@ video {
 .bg-green-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(187 247 208 / var(--tw-bg-opacity, 1));
+}
+.bg-green-400\/20 {
+  background-color: rgb(74 222 128 / 0.2);
 }
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
