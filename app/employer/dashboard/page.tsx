@@ -12,7 +12,7 @@ export default function EmployerDashboard() {
 
   const fetchStudents = async () => {
     setLoading(true)
-    const { data, error } = await supabase.from('user_progress').select('*').order('created_at', { ascending: false })
+    const { data, error } = await supabase.from('user_progress').select('milestone_name, original_days, optimized_days, is_fast_tracked').order('created_at', { ascending: false })
     if (!error && data) setStudents(data)
     setLoading(false)
   }
