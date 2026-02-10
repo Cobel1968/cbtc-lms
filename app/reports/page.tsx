@@ -1,24 +1,32 @@
 "use client"
 import React from 'react'
-import Link from 'next/link'
-import { ArrowLeft, Home } from 'lucide-react'
+import TopNav from '@/components/TopNav'
+import { TrendingDown, Zap, Clock } from 'lucide-react'
 
-export default function Page() {
+export default function ReportsPage() {
   return (
-    <div className='min-h-screen bg-slate-50 p-10 font-sans'>
-      <div className='max-w-2xl mx-auto bg-white p-12 rounded-[40px] shadow-sm border border-slate-100'>
-        <div className='bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest inline-block mb-6'>
-          Cobel AI Engine: Active Route
+    <div className="min-h-screen bg-slate-50">
+      <TopNav />
+      <main className="max-w-5xl mx-auto py-12 px-6">
+        <h1 className="text-3xl font-black uppercase tracking-tighter mb-8">Optimization Report</h1>
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="bg-white p-8 rounded-[40px] shadow-sm border border-slate-100">
+            <TrendingDown className="text-green-500 mb-4" size={32} />
+            <h4 className="font-black text-2xl">-35%</h4>
+            <p className="text-slate-400 text-[10px] uppercase font-bold">Time Optimization</p>
+          </div>
+          <div className="bg-white p-8 rounded-[40px] shadow-sm border border-slate-100">
+            <Zap className="text-blue-500 mb-4" size={32} />
+            <h4 className="font-black text-2xl">89%</h4>
+            <p className="text-slate-400 text-[10px] uppercase font-bold">Technical Fluency</p>
+          </div>
+          <div className="bg-white p-8 rounded-[40px] shadow-sm border border-slate-100">
+            <Clock className="text-purple-500 mb-4" size={32} />
+            <h4 className="font-black text-2xl">2.5 Weeks</h4>
+            <p className="text-slate-400 text-[10px] uppercase font-bold">Saved via Fast-Tracking</p>
+          </div>
         </div>
-        <h1 className='text-3xl font-black uppercase tracking-tighter mb-4'>REPORTS</h1>
-        <p className='text-slate-500 mb-8'>This section is now synchronized with your Bilingual Technical Mapping profile.</p>
-        
-        <div className='flex gap-4'>
-          <Link href='/curriculum' className='flex items-center gap-2 font-bold text-xs uppercase text-slate-400 hover:text-blue-600'>
-            <ArrowLeft size={16} /> Back to Curriculum
-          </Link>
-        </div>
-      </div>
+      </main>
     </div>
   )
 }
