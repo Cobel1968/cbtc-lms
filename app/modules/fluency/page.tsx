@@ -1,4 +1,3 @@
-@'
 import React from 'react'
 import TopNav from '@/components/TopNav'
 
@@ -10,4 +9,4 @@ export default function ModulePage() {
       <p className='text-slate-500'>Initializing Bilingual Technical Mapping...</p>
     </div>
   )
-'@ 
+'@
