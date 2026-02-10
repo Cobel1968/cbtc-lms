@@ -1,56 +1,66 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import TopNav from '@/components/TopNav'
-import { GraduationCap, BookOpen, ArrowRight, Zap, Target, Shield } from 'lucide-react'
+import { Users, BrainCircuit, ArrowRight, ShieldCheck, Zap } from 'lucide-react'
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white font-sans">
-      <TopNav />
-      
+    <div className="min-h-screen bg-white font-sans text-[#003366]">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6 text-center max-w-5xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase mb-8">
-          <Zap size={14} /> The Cobel AI Engine is Live
+      <nav className="px-8 py-6 flex justify-between items-center border-b border-slate-50">
+        <div className="font-black text-2xl tracking-tighter">COBEL AI</div>
+        <div className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-400">
+          <span>Vocational Mapping</span>
+          <span>Temporal Optimization</span>
         </div>
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight tracking-tighter mb-6">
-          VOCATIONAL TRAINING <br/><span className="text-blue-600">REDEFINED.</span>
-        </h1>
-        <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 font-medium">
-          Eliminate knowledge gaps and time waste with our computer-implemented pedagogical logic.
-        </p>
-        
-        <div className="flex flex-col md:flex-row justify-center gap-4">
-          <Link href="/register" className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition transform hover:scale-105">
-            GET STARTED <ArrowRight size={20} />
-          </Link>
-          <Link href="/curriculum" className="bg-slate-100 text-slate-900 px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-slate-200 transition">
-            VIEW CURRICULUM <BookOpen size={20} />
-          </Link>
-        </div>
-      </section>
+      </nav>
 
-      {/* Feature Grid */}
-      <section className="py-20 bg-slate-50 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-          <div className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm">
-            <Target className="text-blue-600 mb-4" size={32} />
-            <h3 className="text-xl font-bold mb-2">Diagnostic Mapping</h3>
-            <p className="text-slate-500 text-sm leading-relaxed">Multi-dimensional analysis to identify exact technical knowledge gaps.</p>
+      <main className="max-w-7xl mx-auto px-8 py-20">
+        <div className="max-w-3xl mb-20">
+          <h1 className="text-7xl font-black uppercase tracking-tighter leading-[0.9]">
+            The Future of <span className="text-blue-600 text-outline">Vocational</span> Training.
+          </h1>
+          <p className="mt-6 text-xl text-slate-500 font-medium max-w-xl">
+            Bridge the gap between analog assessments and digital efficiency with the Cobel AI Engine.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Employer Card */}
+          <div className="group p-12 bg-slate-50 rounded-[48px] border border-transparent hover:border-blue-200 transition-all duration-500">
+            <div className="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-8 group-hover:scale-110 transition">
+              <Users className="text-blue-600" size={32} />
+            </div>
+            <h2 className="text-3xl font-black uppercase tracking-tighter mb-4">Partner Portal</h2>
+            <p className="text-slate-500 mb-8 font-medium">Manage your workforce, track temporal savings, and oversee bilingual technical mapping for your teams.</p>
+            <Link href="/employer/dashboard" className="inline-flex items-center gap-3 bg-[#003366] text-white px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-blue-100">
+              Enter Dashboard <ArrowRight size={16} />
+            </Link>
           </div>
-          <div className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm">
-            <Shield className="text-blue-600 mb-4" size={32} />
-            <h3 className="text-xl font-bold mb-2">Bilingual Fluency</h3>
-            <p className="text-slate-500 text-sm leading-relaxed">Bridge English and French technical terms through automated ingestion.</p>
-          </div>
-          <div className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm">
-            <Zap className="text-blue-600 mb-4" size={32} />
-            <h3 className="text-xl font-bold mb-2">Temporal Optimization</h3>
-            <p className="text-slate-500 text-sm leading-relaxed">Skip redundant content. Complete training up to 30% faster.</p>
+
+          {/* Student Card */}
+          <div className="group p-12 bg-[#003366] text-white rounded-[48px] shadow-2xl shadow-blue-200">
+            <div className="w-16 h-16 bg-blue-600 rounded-3xl flex items-center justify-center shadow-xl mb-8 group-hover:scale-110 transition">
+              <BrainCircuit className="text-white" size={32} />
+            </div>
+            <h2 className="text-3xl font-black uppercase tracking-tighter mb-4 text-white">Student Bridge</h2>
+            <p className="text-blue-200 mb-8 font-medium">Access your curriculum and upload your handwriting assessments for AI-driven technical verification.</p>
+            <Link href="/curriculum" className="inline-flex items-center gap-3 bg-white text-[#003366] px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest">
+              Start Learning <Zap size={16} />
+            </Link>
           </div>
         </div>
-      </section>
+
+        {/* Feature Tags */}
+        <div className="mt-20 flex flex-wrap gap-4">
+          <div className="flex items-center gap-2 px-6 py-3 bg-slate-100 rounded-full text-[10px] font-black uppercase tracking-widest">
+            <ShieldCheck size={14} className="text-blue-600" /> Handwriting OCR Ready
+          </div>
+          <div className="flex items-center gap-2 px-6 py-3 bg-slate-100 rounded-full text-[10px] font-black uppercase tracking-widest">
+            <Zap size={14} className="text-blue-600" /> Temporal Optimization
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
