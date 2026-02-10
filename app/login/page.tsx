@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import Link from 'next/link'
 import TopNav from '@/components/TopNav'
 import { Mail, Lock, ArrowRight } from 'lucide-react'
 
