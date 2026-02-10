@@ -1,50 +1,53 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import { Zap, Globe, ShieldCheck, GraduationCap } from 'lucide-react'
+import TopNav from '@/components/TopNav'
+import { GraduationCap, BookOpen, ArrowRight, Zap, Target, Shield } from 'lucide-react'
 
 export default function LandingPage() {
   return (
-    <div className="bg-white text-slate-900 min-h-screen">
-      {/* Navigation */}
-      <nav className="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div className="font-black text-2xl tracking-tighter">COBEL CBTC</div>
-        <div className="flex gap-6 items-center">
-          <Link href="/login" className="text-sm font-bold text-slate-600 hover:text-blue-600">Login</Link>
-          <Link href="/employer/register" className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold">Employer Portal</Link>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-white font-sans">
+      <TopNav />
+      
       {/* Hero Section */}
-      <header className="py-20 px-6 text-center max-w-4xl mx-auto">
-        <h1 className="text-6xl font-black mb-6 tracking-tight">AI-Accelerated Vocational Training.</h1>
-        <p className="text-xl text-slate-500 mb-10 leading-relaxed">
-          Skip what you already know. Our <strong>Cobel AI Engine</strong> maps your technical fluency in English and French using 
-          advanced handwriting analysis to fast-track your certification.
-        </p>
-        <div className="flex justify-center gap-4">
-          <Link href="/register" className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold shadow-xl">Get Started</Link>
-          <Link href="#how-it-works" className="border border-slate-200 px-8 py-4 rounded-2xl font-bold">View Curriculum</Link>
+      <section className="pt-24 pb-16 px-6 text-center max-w-5xl mx-auto">
+        <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase mb-8">
+          <Zap size={14} /> The Cobel AI Engine is Live
         </div>
-      </header>
+        <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight tracking-tighter mb-6">
+          VOCATIONAL TRAINING <br/><span className="text-blue-600">REDEFINED.</span>
+        </h1>
+        <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10 font-medium">
+          Eliminate knowledge gaps and time waste with our computer-implemented pedagogical logic.
+        </p>
+        
+        <div className="flex flex-col md:flex-row justify-center gap-4">
+          <Link href="/register" className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition transform hover:scale-105">
+            GET STARTED <ArrowRight size={20} />
+          </Link>
+          <Link href="/curriculum" className="bg-slate-100 text-slate-900 px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-slate-200 transition">
+            VIEW CURRICULUM <BookOpen size={20} />
+          </Link>
+        </div>
+      </section>
 
-      {/* Features Grid */}
-      <section className="bg-slate-50 py-20 px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className="space-y-4">
-            <Zap className="text-blue-600" size={32} />
-            <h3 className="font-bold text-xl">Temporal Optimization</h3>
-            <p className="text-sm text-slate-500">Reduce training time by up to 30% by verifying prior technical knowledge.</p>
+      {/* Feature Grid */}
+      <section className="py-20 bg-slate-50 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+          <div className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm">
+            <Target className="text-blue-600 mb-4" size={32} />
+            <h3 className="text-xl font-bold mb-2">Diagnostic Mapping</h3>
+            <p className="text-slate-500 text-sm leading-relaxed">Multi-dimensional analysis to identify exact technical knowledge gaps.</p>
           </div>
-          <div className="space-y-4">
-            <Globe className="text-blue-600" size={32} />
-            <h3 className="font-bold text-xl">Bilingual Mapping</h3>
-            <p className="text-sm text-slate-500">Curriculum mapped for technical fluency in both English and French.</p>
+          <div className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm">
+            <Shield className="text-blue-600 mb-4" size={32} />
+            <h3 className="text-xl font-bold mb-2">Bilingual Fluency</h3>
+            <p className="text-slate-500 text-sm leading-relaxed">Bridge English and French technical terms through automated ingestion.</p>
           </div>
-          <div className="space-y-4">
-            <ShieldCheck className="text-blue-600" size={32} />
-            <h3 className="font-bold text-xl">Employer Verified</h3>
-            <p className="text-sm text-slate-500">Tamper-proof certificates with QR-code verification for industry trust.</p>
+          <div className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm">
+            <Zap className="text-blue-600 mb-4" size={32} />
+            <h3 className="text-xl font-bold mb-2">Temporal Optimization</h3>
+            <p className="text-slate-500 text-sm leading-relaxed">Skip redundant content. Complete training up to 30% faster.</p>
           </div>
         </div>
       </section>
