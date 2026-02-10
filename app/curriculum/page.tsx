@@ -10,7 +10,7 @@ export default function StudentCurriculum() {
 
   useEffect(() => {
     async function getCourses() {
-      const { data } = await supabase.from('courses').select('*')
+      const { data } = await supabase.from('courses').select('*').order('created_at', { ascending: true })
       if (data) setCourses(data)
       setLoading(false)
     }
