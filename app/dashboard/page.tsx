@@ -1,35 +1,24 @@
-﻿'use client';
-import React from 'react';
-import CobelIngestionEngine from '@/components/CobelIngestionEngine';
-import OptimizationTracker from '@/components/OptimizationTracker';
+"use client"
+import React from 'react'
+import Link from 'next/link'
+import { ArrowLeft, Home } from 'lucide-react'
 
-export default function StudentDashboard() {
+export default function Page() {
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-      <div className="max-w-5xl mx-auto space-y-8">
-        <header className="border-b border-gray-800 pb-6">
-          <h1 className="text-3xl font-black text-blue-500">COBEL STUDENT PORTAL</h1>
-          <p className="text-gray-400">Adaptive Learning Engine | Phase: Multi-Dimensional Diagnostic</p>
-        </header>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-             {/* Feature 4: The Analog-to-Digital Bridge */}
-             <section className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
-                <h2 className="text-xl font-bold mb-4">Vocational Assessment Upload</h2>
-                <CobelIngestionEngine />
-             </section>
-          </div>
-
-          <div className="space-y-8">
-             {/* Temporal Optimization Tracker */}
-             <section className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
-                <h2 className="text-xl font-bold mb-4">Your Progress Density</h2>
-                <OptimizationTracker density={0.85} />
-             </section>
-          </div>
+    <div className='min-h-screen bg-slate-50 p-10 font-sans'>
+      <div className='max-w-2xl mx-auto bg-white p-12 rounded-[40px] shadow-sm border border-slate-100'>
+        <div className='bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest inline-block mb-6'>
+          Cobel AI Engine: Active Route
+        </div>
+        <h1 className='text-3xl font-black uppercase tracking-tighter mb-4'>DASHBOARD</h1>
+        <p className='text-slate-500 mb-8'>This section is now synchronized with your Bilingual Technical Mapping profile.</p>
+        
+        <div className='flex gap-4'>
+          <Link href='/curriculum' className='flex items-center gap-2 font-bold text-xs uppercase text-slate-400 hover:text-blue-600'>
+            <ArrowLeft size={16} /> Back to Curriculum
+          </Link>
         </div>
       </div>
     </div>
-  );
+  )
 }

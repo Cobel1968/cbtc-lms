@@ -10,7 +10,7 @@ export default function Page() {
         <div className='bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest inline-block mb-6'>
           Cobel AI Engine: Active Route
         </div>
-        <h1 className='text-3xl font-black uppercase tracking-tighter mb-4'>MODULES/LOGIC</h1>
+        <h1 className='text-3xl font-black uppercase tracking-tighter mb-4'>SETTINGS</h1>
         <p className='text-slate-500 mb-8'>This section is now synchronized with your Bilingual Technical Mapping profile.</p>
         
         <div className='flex gap-4'>
