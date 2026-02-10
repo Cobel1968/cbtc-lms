@@ -89,7 +89,7 @@ export default function EmployerDashboard() {
                    <option>Mechanical Fundamentals</option>
                    <option>Bilingual Technical Mapping</option>
                 </select>
-                <button className="w-full bg-[#003366] text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg">Confirm Enrolment</button>
+                <button type="submit" className="w-full bg-[#003366] text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg">Confirm Enrolment</button>
               </form>
             </div>
           </div>
