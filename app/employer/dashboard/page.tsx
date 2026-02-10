@@ -46,7 +46,7 @@ export default function EmployerDashboard() {
             <p className="text-blue-600 font-bold text-[10px] uppercase tracking-[0.3em] mt-2">Cobel AI Engine Management</p>
           </div>
           <div className="flex gap-3">
-            <button onClick={() => window.location.href='/curriculum'} className="bg-slate-100 text-slate-900 px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-2 hover:bg-slate-200 transition">
+            <button onClick={() => window.location.href=`/courses/${courses[0]?.id}/analysis`} className="bg-slate-100 text-slate-900 px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-2 hover:bg-slate-200 transition">
               <Book size={14} /> View Curriculum
             </button>
             <button onClick={() => setShowEnrol(true)} className="bg-[#003366] text-white px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-2 shadow-xl hover:bg-blue-800 transition">
