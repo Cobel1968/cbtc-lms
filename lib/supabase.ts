@@ -5,9 +5,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Audit Helper: Checks connection and schema health
-export const checkEngineHealth = async () => {
-  const { data, error } = await supabase.from('user_progress').select('count').limit(1)
-  if (error) console.error("Cobel AI Engine: Connection Disconnect Detected", error)
-  return !error
+// Engine Health Check: Verifies the user_progress table is reachable
+export const testConnection = async () => {
+  const { data, error } = await supabase.from('user_progress').select('*').limit(1)
+  if (error) {
+    console.error("Supabase Schema Mismatch:", error.message)
+    return false
+  }
+  return true
 }
