@@ -1,17 +1,20 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Building2, Mail, Lock, ChevronRight, ShieldCheck } from 'lucide-react'
 import TopNav from '@/components/TopNav'
-import { Building2, Mail, ChevronRight, ShieldCheck } from 'lucide-react'
 
-export default function Register() {
+export default function EmployerRegister() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const handleRegister = (e: any) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => { router.push('/portal') }, 1500)
+    // Simulate registration and link to the Employer Role
+    setTimeout(() => {
+      router.push('/employer/dashboard')
+    }, 1500)
   }
 
   return (
@@ -20,8 +23,8 @@ export default function Register() {
       <div className="flex flex-col justify-center items-center p-10">
         <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
           <div className="bg-blue-700 p-8 text-white text-center">
-            <h2 className="text-xl font-bold uppercase tracking-widest">Cobel B2B Portal</h2>
-            <p className="text-xs opacity-80 mt-1">Vocational Training & Adaptive Learning</p>
+            <h2 className="text-xl font-bold uppercase tracking-widest">B2B Partnership</h2>
+            <p className="text-xs opacity-80 mt-1">Enroll your workforce into the Cobel AI Engine</p>
           </div>
 
           <form onSubmit={handleRegister} className="p-8 space-y-5">
@@ -36,15 +39,15 @@ export default function Register() {
               </div>
             </div>
 
-            <div className="p-4 bg-blue-50 rounded-xl flex gap-3 border border-blue-100">
+            <div className="p-4 bg-blue-50 rounded-xl flex gap-3">
               <ShieldCheck className="text-blue-700 shrink-0" size={20} />
               <p className="text-[11px] text-blue-800 leading-tight">
-                <strong>Instant B2B Access:</strong> Enrollment grants immediate access to the Cobel AI Engine and tax-deductible invoicing.
+                <strong>Instant Billing:</strong> Registration grants immediate access to itemized tax invoices for tax-deductible vocational training.
               </p>
             </div>
 
-            <button type="submit" disabled={loading} className="w-full bg-blue-700 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-800 transition shadow-lg shadow-blue-200">
-              {loading ? 'Creating Organization...' : 'REGISTER NOW'} <ChevronRight size={18} />
+            <button type="submit" disabled={loading} className="w-full bg-blue-700 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-800 transition">
+              {loading ? 'Setting up Organization...' : 'Register Organization'} <ChevronRight size={18} />
             </button>
           </form>
         </div>
