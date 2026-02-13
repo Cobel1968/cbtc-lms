@@ -1,0 +1,18 @@
+﻿[
+  {
+    "code_module": "TEST-001",
+    "titre_francais": "Module Test",
+    "titre_anglais": "Test Module",
+    "niveau": "Débutant",
+    "domaine": "Test",
+    "competences_cles": [],
+    "prerequisites": [],
+    "objectifs_apprentissage": [],
+    "duree_heures": 10,
+    "credits_ects": 2.5,
+    "termes_techniques": {},
+    "is_active": true,
+    "category": "test",
+    "course_id": null
+  }
+]

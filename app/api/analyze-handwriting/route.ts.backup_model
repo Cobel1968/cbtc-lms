@@ -1,0 +1,199 @@
+﻿import { NextRequest, NextResponse } from 'next/server'
+import { GoogleGenerativeAI } from '@google/generative-ai'
+import { createClient } from '@supabase/supabase-js'
+
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60
+
+export async function POST(req: NextRequest) {
+  console.log(' [ANALYZE-HANDWRITING] Feature 4 - Pont AnalogiqueDigital')
+  const startTime = Date.now()
+  
+  try {
+    const { imageUrl, courseId, userId } = await req.json()
+    
+    if (!imageUrl) {
+      return NextResponse.json({
+        success: false,
+        error: 'imageUrl est requis'
+      }, { status: 400 })
+    }
+    
+    // 1 Vérifier la clé API
+    const apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY
+    
+    if (!apiKey) {
+      console.error(' Clé API Gemini manquante')
+      return NextResponse.json({
+        success: false,
+        error: 'Clé API Gemini non configurée',
+        hint: 'Ajoutez GOOGLE_API_KEY dans .env.local'
+      }, { status: 500 })
+    }
+    
+    console.log(' Clé API détectée:', apiKey.substring(0, 10) + '...')
+    
+    // 2 Initialiser Gemini
+    const genAI = new GoogleGenerativeAI(apiKey)
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+    
+    console.log(' Analyse de l\'image:', imageUrl.substring(0, 60) + '...')
+    
+    // 3 Télécharger l'image
+    let imageData: string
+    let mimeType = 'image/jpeg'
+    
+    if (imageUrl.startsWith('http')) {
+      const response = await fetch(imageUrl)
+      if (!response.ok) {
+        throw new Error(`Erreur téléchargement image: ${response.status}`)
+      }
+      const buffer = await response.arrayBuffer()
+      imageData = Buffer.from(buffer).toString('base64')
+      mimeType = response.headers.get('content-type') || 'image/jpeg'
+    } else if (imageUrl.startsWith('data:image')) {
+      const match = imageUrl.match(/data:(image\/[^;]+);base64,(.+)/)
+      if (match) {
+        mimeType = match[1]
+        imageData = match[2]
+      } else {
+        throw new Error('Format data URL invalide')
+      }
+    } else {
+      return NextResponse.json({
+        success: false,
+        error: 'Format imageUrl non supporté (http/https ou data:image requis)'
+      }, { status: 400 })
+    }
+    
+    console.log(' Image encodée:', imageData.length, 'caractères base64')
+    
+    // 4 Prompt bilingue Feature 4
+    const prompt = `Tu es un expert en analyse d'évaluations techniques BILINGUES (français/anglais) pour la formation professionnelle.
+
+Analyse cette évaluation manuscrite et extrais avec PRÉCISION :
+
+1. **Texte intégral** (transcription fidèle de TOUT le texte visible)
+2. **Termes techniques** français ET anglais (sépare bien FR et EN)
+3. **Score de compréhension** (0-100 basé sur la qualité de l'écriture et la cohérence)
+4. **Points de friction** (concepts difficiles identifiés)
+5. **Recommandations pédagogiques**
+
+IMPORTANT : Si c'est une image sans texte manuscrit, décris ce que tu vois.
+
+Réponds UNIQUEMENT en JSON valide (sans markdown) :
+{
+  "extracted_text": "transcription complète du texte visible",
+  "technical_terms": {
+    "fr": ["terme1_fr", "terme2_fr"],
+    "en": ["term1_en", "term2_en"]
+  },
+  "comprehension_score": 85,
+  "friction_points": [
+    {"concept": "embrayage", "severity": "medium", "suggestion": "Réviser le fonctionnement du système d'embrayage"}
+  ],
+  "recommendations": ["Recommandation pédagogique 1", "Recommandation 2"]
+}`
+    
+    // 5 Appel Gemini Vision
+    const result = await model.generateContent([
+      prompt,
+      {
+        inlineData: {
+          data: imageData,
+          mimeType: mimeType
+        }
+      }
+    ])
+    
+    const responseText = result.response.text()
+    console.log(' Réponse Gemini reçue:', responseText.substring(0, 150) + '...')
+    
+    // 6 Parser JSON
+    let analysis
+    try {
+      // Nettoyer le markdown si présent
+      const cleaned = responseText
+        .replace(/```json\n?/g, '')
+        .replace(/```\n?/g, '')
+        .trim()
+      
+      analysis = JSON.parse(cleaned)
+      console.log(' JSON parsé avec succès')
+      
+    } catch (parseError: any) {
+      console.warn(' Parsing JSON échoué, fallback texte brut')
+      analysis = {
+        extracted_text: responseText,
+        technical_terms: { fr: [], en: [] },
+        comprehension_score: 50,
+        friction_points: [],
+        recommendations: ['Analyse manuelle requise']
+      }
+    }
+    
+    // 7 Enregistrer dans Supabase
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    
+    let assessmentId = null
+    
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey)
+        
+        const { data, error } = await supabase
+          .from('assessments')
+          .insert({
+            student_id: userId || 'anonymous',
+            course_id: courseId || 'unknown',
+            image_url: imageUrl,
+            extracted_text: analysis.extracted_text,
+            technical_terms: analysis.technical_terms,
+            comprehension_score: analysis.comprehension_score,
+            friction_points: analysis.friction_points,
+            recommendations: analysis.recommendations,
+            analyzed_at: new Date().toISOString()
+          })
+          .select('id')
+          .single()
+        
+        if (error) {
+          console.error(' Supabase insert error:', error.message)
+        } else {
+          assessmentId = data?.id
+          console.log(' Assessment enregistré:', assessmentId)
+        }
+      } catch (dbError: any) {
+        console.error(' Erreur DB:', dbError.message)
+      }
+    }
+    
+    const duration = Date.now() - startTime
+    console.log(` Analyse terminée en ${duration}ms`)
+    
+    // 8 Réponse
+    return NextResponse.json({
+      success: true,
+      analysis: {
+        ...analysis,
+        bilingual_match: (analysis.technical_terms?.fr?.length > 0) && (analysis.technical_terms?.en?.length > 0),
+        timestamp: new Date().toISOString(),
+        duration_ms: duration,
+        assessment_id: assessmentId
+      }
+    })
+    
+  } catch (error: any) {
+    const duration = Date.now() - startTime
+    console.error(' [ANALYZE-HANDWRITING] Erreur:', error.message)
+    
+    return NextResponse.json({
+      success: false,
+      error: error.message,
+      code: error.code,
+      duration_ms: duration,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    }, { status: 500 })
+  }
+}

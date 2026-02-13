@@ -1,0 +1,93 @@
+import { createClient } from '@supabase/supabase-js'
+import { NextRequest } from 'next/server'
+
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60
+
+export async function POST(req: NextRequest) {
+  console.log('📥 [BULK-INFLATE] Début')
+  const startTime = Date.now()
+
+  try {
+    const modules = await req.json()
+    console.log(`📦 [BULK-INFLATE] ${modules.length} modules reçus`)
+
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+    if (!url || !serviceKey) {
+      return Response.json({
+        success: false,
+        error: 'Configuration Supabase manquante'
+      }, { status: 500 })
+    }
+
+    const supabase = createClient(url, serviceKey, {
+      auth: { persistSession: false }
+    })
+
+    // 🧹 NETTOYER les colonnes non supportées
+    const cleanedModules = modules.map((m: any) => {
+      const {
+        curriculum_density,  // ❌ Retirer
+        ...validFields
+      } = m
+      return validFields
+    })
+
+    console.log(`🧹 [BULK-INFLATE] Modules nettoyés (sans curriculum_density)`)
+
+    // Insertion par batch
+    const batchSize = 20
+    let inserted = 0, failed = 0
+    const batchErrors: any[] = []
+
+    for (let i = 0; i < cleanedModules.length; i += batchSize) {
+      const batch = cleanedModules.slice(i, i + batchSize)
+      const batchNum = Math.floor(i / batchSize) + 1
+      
+      console.log(`📤 [BULK-INFLATE] Batch ${batchNum}`)
+      
+      const { data, error } = await supabase
+        .from('modules')
+        .insert(batch)
+        .select('id')
+
+      if (error) {
+        console.error(`❌ Batch ${batchNum}:`, error.message)
+        failed += batch.length
+        batchErrors.push({ batch: batchNum, error: error.message, code: error.code })
+      } else {
+        inserted += data?.length || batch.length
+        console.log(`✅ Batch ${batchNum} OK`)
+      }
+    }
+
+    const { count } = await supabase
+      .from('modules')
+      .select('id', { count: 'exact', head: true })
+
+    const duration = `${Date.now() - startTime}ms`
+    console.log(`🎉 [BULK-INFLATE] Terminé en ${duration}`)
+
+    return Response.json({
+      success: true,
+      summary: {
+        received: modules.length,
+        inserted,
+        failed,
+        totalInDatabase: count || 0,
+        duration,
+        batches: Math.ceil(modules.length / batchSize),
+        batchErrors: batchErrors.length > 0 ? batchErrors : undefined
+      }
+    })
+
+  } catch (error: any) {
+    console.error('❌ [BULK-INFLATE] Exception:', error)
+    return Response.json({
+      success: false,
+      error: error.message
+    }, { status: 500 })
+  }
+}

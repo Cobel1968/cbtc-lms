@@ -1,0 +1,47 @@
+import { createClient } from '@supabase/supabase-js'
+
+export async function POST(request: Request) {
+    const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+    
+    try {
+        const body = await request.json()
+        const items = Array.isArray(body) ? body : [body]
+        
+        const VALID_COURSE_ID = "5400dd18-c89b-4a9e-b592-0c7c75c8a1b6"; 
+
+        const mappedItems = items.map((item, index) => ({
+            course_id: VALID_COURSE_ID,
+            title_en: item.module_title || item.title_en || "Technical Module",
+            title_fr: item.module_title_fr || item.title_fr || "Module Technique",
+            // Forçage en types primitifs pour éviter les erreurs JSON
+            sequence_order: index + 1,
+            order_index: index + 1,
+            curriculum_density: 1.0,
+            category: { name: "Vocational" } 
+        }))
+
+        const { data, error } = await supabase.from('modules').insert(mappedItems).select()
+        
+        if (error) {
+            // CE LOG EST CRUCIAL : Regardez votre terminal 'npm run dev' après l'erreur
+            console.error("--- ERREUR DÉTAILLÉE SUPABASE ---");
+            console.error("Code:", error.code);
+            console.error("Message:", error.message);
+            console.error("Détails:", error.details);
+            console.error("---------------------------------");
+            
+            return Response.json({ 
+                error: error.message, 
+                details: error.details,
+                supabase_code: error.code 
+            }, { status: 400 })
+        }
+        
+        return Response.json({ success: true, count: data?.length })
+    } catch (err: any) {
+        return Response.json({ error: err.message }, { status: 500 })
+    }
+}

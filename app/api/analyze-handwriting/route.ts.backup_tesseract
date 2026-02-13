@@ -1,0 +1,207 @@
+﻿import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60
+
+export async function POST(req: NextRequest) {
+  console.log(' [ANALYZE-HANDWRITING] Feature 4 - Pont AnalogiqueDigital')
+  const startTime = Date.now()
+  
+  try {
+    const { imageUrl, courseId, userId } = await req.json()
+    
+    if (!imageUrl) {
+      return NextResponse.json({
+        success: false,
+        error: 'imageUrl est requis'
+      }, { status: 400 })
+    }
+    
+    // 1 Clé API
+    const apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY
+    
+    if (!apiKey) {
+      return NextResponse.json({
+        success: false,
+        error: 'Clé API Gemini manquante'
+      }, { status: 500 })
+    }
+    
+    console.log(' Clé API détectée:', apiKey.substring(0, 10) + '...')
+    
+    // 2 Télécharger l'image
+    let imageData: string
+    let mimeType = 'image/jpeg'
+    
+    if (imageUrl.startsWith('http')) {
+      const response = await fetch(imageUrl)
+      if (!response.ok) {
+        throw new Error(`Erreur téléchargement: ${response.status}`)
+      }
+      const buffer = await response.arrayBuffer()
+      imageData = Buffer.from(buffer).toString('base64')
+      mimeType = response.headers.get('content-type') || 'image/jpeg'
+    } else if (imageUrl.startsWith('data:image')) {
+      const match = imageUrl.match(/data:(image\/[^;]+);base64,(.+)/)
+      if (match) {
+        mimeType = match[1]
+        imageData = match[2]
+      } else {
+        throw new Error('Format data URL invalide')
+      }
+    } else {
+      return NextResponse.json({
+        success: false,
+        error: 'Format imageUrl non supporté'
+      }, { status: 400 })
+    }
+    
+    console.log(' Image encodée:', imageData.length, 'caractères')
+    
+    // 3 Prompt bilingue
+    const prompt = `Tu es un expert en analyse d'évaluations techniques BILINGUES (français/anglais).
+
+Analyse cette image et extrais :
+1. Tout le texte visible
+2. Les termes techniques français ET anglais
+3. Un score de compréhension (0-100)
+4. Les points de friction
+5. Des recommandations
+
+Réponds en JSON (sans markdown) :
+{
+  "extracted_text": "...",
+  "technical_terms": {"fr": ["..."], "en": ["..."]},
+  "comprehension_score": 85,
+  "friction_points": [{"concept": "...", "severity": "medium", "suggestion": "..."}],
+  "recommendations": ["..."]
+}`
+    
+    // 4 Appel REST direct à l'API v1 (NOUVEAU)
+    console.log(' Modèle : gemini-1.5-flash (API v1)')
+    
+    const apiUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent'
+    
+    const requestBody = {
+      contents: [{
+        parts: [
+          { text: prompt },
+          {
+            inline_data: {
+              mime_type: mimeType,
+              data: imageData
+            }
+          }
+        ]
+      }]
+    }
+    
+    const apiResponse = await fetch(`${apiUrl}?key=${apiKey}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    })
+    
+    if (!apiResponse.ok) {
+      const errorText = await apiResponse.text()
+      console.error(' API Error:', errorText)
+      throw new Error(`Gemini API error: ${apiResponse.status} - ${errorText}`)
+    }
+    
+    const apiResult = await apiResponse.json()
+    
+    // 5 Extraire la réponse
+    const responseText = apiResult.candidates?.[0]?.content?.parts?.[0]?.text
+    
+    if (!responseText) {
+      throw new Error('Réponse vide de Gemini')
+    }
+    
+    console.log(' Réponse reçue:', responseText.substring(0, 100) + '...')
+    
+    // 6 Parser JSON
+    let analysis
+    try {
+      const cleaned = responseText
+        .replace(/```json\n?/g, '')
+        .replace(/```\n?/g, '')
+        .trim()
+      
+      analysis = JSON.parse(cleaned)
+      console.log(' JSON parsé')
+      
+    } catch (parseError: any) {
+      console.warn(' Parsing échoué, fallback')
+      analysis = {
+        extracted_text: responseText,
+        technical_terms: { fr: [], en: [] },
+        comprehension_score: 50,
+        friction_points: [],
+        recommendations: []
+      }
+    }
+    
+    // 7 Supabase
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    
+    let assessmentId = null
+    
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey)
+        
+        const { data, error } = await supabase
+          .from('assessments')
+          .insert({
+            student_id: userId || 'anonymous',
+            course_id: courseId || 'unknown',
+            image_url: imageUrl,
+            extracted_text: analysis.extracted_text,
+            technical_terms: analysis.technical_terms,
+            comprehension_score: analysis.comprehension_score,
+            friction_points: analysis.friction_points,
+            recommendations: analysis.recommendations,
+            analyzed_at: new Date().toISOString()
+          })
+          .select('id')
+          .single()
+        
+        if (!error && data) {
+          assessmentId = data.id
+          console.log(' Assessment:', assessmentId)
+        }
+      } catch (dbError: any) {
+        console.error(' DB:', dbError.message)
+      }
+    }
+    
+    const duration = Date.now() - startTime
+    console.log(` Terminé en ${duration}ms`)
+    
+    return NextResponse.json({
+      success: true,
+      analysis: {
+        ...analysis,
+        bilingual_match: (analysis.technical_terms?.fr?.length > 0) && (analysis.technical_terms?.en?.length > 0),
+        timestamp: new Date().toISOString(),
+        duration_ms: duration,
+        assessment_id: assessmentId
+      }
+    })
+    
+  } catch (error: any) {
+    const duration = Date.now() - startTime
+    console.error(' Erreur:', error.message)
+    
+    return NextResponse.json({
+      success: false,
+      error: error.message,
+      duration_ms: duration,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    }, { status: 500 })
+  }
+}

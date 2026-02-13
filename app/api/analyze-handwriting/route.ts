@@ -1,99 +1,107 @@
-export const dynamic = 'force-dynamic';
-import { supabase } from '@/lib/supabase';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+import Tesseract from 'tesseract.js'
 
-export async function POST(req: Request) {
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60
+
+export async function POST(req: NextRequest) {
+  console.log(' [ANALYZE-HANDWRITING] Feature 4 - Cobel AI Engine Activation')
+  const startTime = Date.now()
   
-
-  // ROLLBACK PREPARATION: Store initial state for recovery
-  let assessmentId: string | null = null;
-  let originalDensity: number | null = null;
-  let targetStudentId: string | null = null;
-
   try {
-    const { imageUrl, courseId, userId } = await req.json();
-    targetStudentId = userId;
-
-    // 1. ANALOG-TO-DIGITAL BRIDGE (Bilingual Technical Extraction)
-    // Real logic would call Vision API here; simulating based on Feature 4 specs
-    const technicalTerms = {
-      detected_fr: ["disjoncteur", "cÃƒÂ¢blage", "tension"],
-      detected_en: ["circuit breaker", "wiring", "voltage"],
-      bilingual_match: true,
-      timestamp: new Date().toISOString()
-    };
-
-    // 2. TEMPORAL OPTIMIZATION CALCULATION
-    // Reducing density saves time in the pedagogical path [cite: 2026-01-01]
-    const densityReduction = 0.15; 
-    const fluencyScore = 0.92;
-
-    // 3. FETCH CURRENT DENSITY (For Rollback Safety)
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('current_curriculum_density')
-      .eq('id', targetStudentId)
-      .single();
+    const { imageUrl, courseId, userId } = await req.json()
     
-    originalDensity = profile?.current_curriculum_density || 1.0;
+    if (!imageUrl) {
+      return NextResponse.json({ success: false, error: 'imageUrl est requis' }, { status: 400 })
+    }
 
-    // 4. TRANSACTION STEP A: Record Assessment
-    const { data: assessment, error: assessmentError } = await supabase
-      .from('physical_assessments')
+    // 1. Initialisation Supabase avec Service Role (Instruction 2026-02-12)
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+
+    // 2. OCR avec Tesseract
+    const worker = await Tesseract.createWorker('fra+eng')
+    const { data } = await worker.recognize(imageUrl)
+    await worker.terminate()
+    
+    const extractedText = data.text.toLowerCase()
+    console.log(' Confiance OCR:', Math.round(data.confidence) + '%')
+
+    // 3. ANALYSE DYNAMIQUE : Récupération des termes techniques des 70 modules injectés
+    // On cible les modules liés au cours spécifique pour plus de précision
+    const { data: dbModules } = await supabase
+      .from('modules')
+      .select('termes_techniques, titre_francais, titre_anglais')
+      .eq('course_id', courseId || '5400dd18-c89b-4a9e-b592-0c7c75c8a1b6') // Default ID verified
+
+    // Extraction des termes attendus (Mapping Bilingue)
+    const expectedTermsFr: string[] = []
+    const expectedTermsEn: string[] = []
+
+    dbModules?.forEach(m => {
+      if (m.termes_techniques?.fr) expectedTermsFr.push(...m.termes_techniques.fr)
+      if (m.termes_techniques?.en) expectedTermsEn.push(...m.termes_techniques.en)
+    })
+
+    // 4. MATCHING : Comparaison du texte extrait avec la base de données Cobel
+    const foundTermsFr = expectedTermsFr.filter(term => extractedText.includes(term.toLowerCase()))
+    const foundTermsEn = expectedTermsEn.filter(term => extractedText.includes(term.toLowerCase()))
+
+    // 5. SCORE DE COMPRÉHENSION (Adaptative Logic)
+    // On pondère par la confiance OCR et la densité bilingue
+    const bilingualBonus = (foundTermsFr.length > 0 && foundTermsEn.length > 0) ? 20 : 0
+    const comprehensionScore = Math.min(100, Math.round(
+      (data.confidence * 0.4) + 
+      (foundTermsFr.length * 10) + 
+      (foundTermsEn.length * 10) +
+      bilingualBonus
+    ))
+
+    // 6. POINTS DE FRICTION & RECOMMANDATIONS
+    const frictionPoints = foundTermsFr
+      .filter(fr => !foundTermsEn.some(en => fr === en)) // Cherche les manques de traduction
+      .map(term => ({
+        concept: term,
+        severity: 'medium',
+        suggestion: `Traduire "${term}" pour renforcer la fluidité bilingue.`
+      })).slice(0, 3)
+
+    // 7. ENREGISTREMENT DE L'ASSESSMENT
+    const { data: assessment, error: dbError } = await supabase
+      .from('assessments')
       .insert({
-        student_id: targetStudentId,
+        student_id: userId || 'anonymous',
         course_id: courseId,
         image_url: imageUrl,
-        technical_terms_detected: technicalTerms,
-        fluency_score: fluencyScore,
-        status: 'processed'
+        extracted_text: data.text,
+        technical_terms: { fr: foundTermsFr, en: foundTermsEn },
+        comprehension_score: comprehensionScore,
+        ocr_confidence: data.confidence,
+        analyzed_at: new Date().toISOString()
       })
-      .select()
-      .single();
+      .select('id')
+      .single()
 
-    if (assessmentError) throw assessmentError;
-    assessmentId = assessment.id;
-
-    // 5. TRANSACTION STEP B: Update Curriculum Density
-    // This updates the student's Timeframe Prediction [cite: 2026-01-01]
-    const { error: updateError } = await supabase
-      .from('profiles')
-      .update({ 
-        current_curriculum_density: Math.max(0, originalDensity - densityReduction),
-        last_login: new Date().toISOString()
-      })
-      .eq('id', targetStudentId);
-
-    if (updateError) throw updateError;
-
+    const duration = Date.now() - startTime
+    
     return NextResponse.json({
       success: true,
-      data: {
-        minutes_saved: 45, // Automated Milestone Forecasting result
-        extracted_terms_fr: technicalTerms.detected_fr,
-        extracted_terms_en: technicalTerms.detected_en,
-        new_density: originalDensity - densityReduction
+      analysis: {
+        extracted_text: data.text,
+        technical_terms: { fr: foundTermsFr, en: foundTermsEn },
+        comprehension_score: comprehensionScore,
+        bilingual_match: foundTermsFr.length > 0 && foundTermsEn.length > 0,
+        ocr_confidence: Math.round(data.confidence),
+        duration_ms: duration,
+        assessment_id: assessment?.id
       }
-    });
+    })
 
   } catch (error: any) {
-    console.error("Critical Engine Error:", error.message);
-
-    // Ã°Å¸â€â€ž ROLLBACK LOGIC [cite: 2026-01-15]
-    if (assessmentId) {
-      await supabase.from('physical_assessments').delete().eq('id', assessmentId);
-    }
-    if (originalDensity !== null && targetStudentId) {
-      await supabase.from('profiles')
-        .update({ current_curriculum_density: originalDensity })
-        .eq('id', targetStudentId);
-    }
-
-    return NextResponse.json({ 
-      error: "Transaction rolled back due to: " + error.message 
-    }, { status: 500 });
+    console.error(' [COBEL_ERROR]:', error.message)
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 })
   }
 }
-
-
-

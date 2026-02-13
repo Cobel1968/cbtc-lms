@@ -15,5 +15,6 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images).*)'],
+  // Added logo.png and .css to the exclusion list to fix your 404s
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|logo.png|.*\\.css).*)'],
 }

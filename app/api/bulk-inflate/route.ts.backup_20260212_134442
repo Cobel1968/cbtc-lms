@@ -1,0 +1,60 @@
+﻿import { createClient } from '@supabase/supabase-js'
+import { NextRequest } from 'next/server'
+
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60
+
+export async function POST(req: NextRequest) {
+  console.log(' [BULK-INFLATE] Début')
+  const startTime = Date.now()
+  try {
+    const modules = await req.json()
+    console.log(` ${modules.length} modules`)
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (!url || !serviceKey) {
+      return Response.json({success: false, error: 'Config manquante'}, {status: 500})
+    }
+    const supabase = createClient(url, serviceKey, {auth: {persistSession: false}})
+    
+    // Nettoyer curriculum_density
+    const cleanedModules = modules.map((m: any) => {
+      const { curriculum_density, ...validFields } = m
+      return validFields
+    })
+    
+    const batchSize = 20
+    let inserted = 0, failed = 0
+    const batchErrors: any[] = []
+    
+    for (let i = 0; i < cleanedModules.length; i += batchSize) {
+      const batch = cleanedModules.slice(i, i + batchSize)
+      const batchNum = Math.floor(i / batchSize) + 1
+      console.log(` Batch ${batchNum}`)
+      const { data, error } = await supabase.from('modules').insert(batch).select('id')
+      if (error) {
+        failed += batch.length
+        batchErrors.push({ batch: batchNum, error: error.message, code: error.code })
+      } else {
+        inserted += data?.length || batch.length
+      }
+    }
+    
+    const { count } = await supabase.from('modules').select('id', { count: 'exact', head: true })
+    const duration = `${Date.now() - startTime}ms`
+    return Response.json({
+      success: true,
+      summary: {
+        received: modules.length,
+        inserted,
+        failed,
+        totalInDatabase: count || 0,
+        duration,
+        batches: Math.ceil(modules.length / batchSize),
+        batchErrors: batchErrors.length > 0 ? batchErrors : undefined
+      }
+    })
+  } catch (error: any) {
+    return Response.json({success: false, error: error.message}, {status: 500})
+  }
+}
