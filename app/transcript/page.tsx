@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { FileText, CheckCircle2, Home, LayoutDashboard, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 
 export default function TranscriptPage() {
   const [data, setData] = useState<any[]>([]);

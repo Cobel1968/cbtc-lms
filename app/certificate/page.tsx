@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { ShieldCheck, Download, Home, LayoutDashboard, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 import { QRCodeSVG } from 'qrcode.react';
 
 export default function CertificatePage() {
