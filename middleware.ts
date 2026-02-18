@@ -24,9 +24,27 @@ export async function middleware(request: NextRequest) {
     return new NextResponse(null, { status: 404 });
   }
 
-  // 3. PUBLIC BYPASS
-  const isPublicPage = ['/', '/menu', '/diagnostic', '/login', '/register', '/auth', '/pricing', '/curriculum', '/courses', '/certificate', '/transcript', '/verify'].some(
-    path => pathname === path || pathname.startsWith(path)
+  // Root always serves landing page (never redirect to student/dashboard)
+  if (pathname === '/') {
+    return NextResponse.next();
+  }
+
+  // 3. PUBLIC BYPASS (exact / or path + subpaths; '/' must not match all paths)
+  const isPublicPage = [
+    '/menu',
+    '/diagnostic',
+    '/login',
+    '/register',
+    '/auth',
+    '/pricing',
+    '/curriculum',
+    '/courses',
+    '/certificate',
+    '/transcript',
+    '/verify',
+    '/employer',
+  ].some(
+    (path) => pathname === path || pathname.startsWith(path + '/')
   );
   const isPublicApi =
     pathname.startsWith('/api/analyze-handwriting') ||
