@@ -34,3 +34,4 @@ export default function admin_loading() {
     </div>
   );
 }
+

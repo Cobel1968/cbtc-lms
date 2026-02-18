@@ -22,3 +22,4 @@ export const simulateHandwritingAnalysis = async (studentId: string) => {
   if (error) throw error
   return { hoursSaved, terms: mockExtractedTerms }
 }
+

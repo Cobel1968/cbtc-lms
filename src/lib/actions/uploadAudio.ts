@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '.\/lib/supabase';
 
 
 export const uploadAudioAssessment = async (blob: Blob, userId: string, moduleId: string) => {
@@ -20,3 +20,5 @@ export const uploadAudioAssessment = async (blob: Blob, userId: string, moduleId
   // This connects to the audioProcessor.ts we built earlier
   return publicUrl;
 };
+
+

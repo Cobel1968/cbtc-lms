@@ -39,3 +39,4 @@ function calculateFluency(text: string, term: string): number {
   // Pedagogical Logic: Density of technical terms vs noise
   return Math.min(100, (term.length / wordCount) * 1000);
 }
+

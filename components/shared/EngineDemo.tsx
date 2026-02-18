@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useState } from 'react';
 import { Play, CheckCircle, Clock, Languages } from 'lucide-react';
 
@@ -46,7 +46,7 @@ export default function EngineDemo() {
           {stage === 'analyzing' && <p className="text-amber-500 animate-pulse">{">"} OCR Pre-processing: Detecting Bilingual technical terms...</p>}
           {stage === 'updated' && (
             <>
-              <p className="text-green-500">{">"} Terms Detected: [Disjoncteur, Tension, Câblage]</p>
+              <p className="text-green-500">{">"} Terms Detected: [Disjoncteur, Tension, C�blage]</p>
               <p className="text-green-500">{">"} Bilingual Fluency Score: 0.98</p>
               <p className="text-white font-bold">{">"} ADJUSTING GRADUATION TIMELINE: -4 WEEKS</p>
             </>
@@ -64,3 +64,4 @@ export default function EngineDemo() {
     </div>
   );
 }
+

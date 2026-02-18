@@ -73,3 +73,4 @@ export default function ProgressForecasting({ standard_weeks, days_saved, comple
     </div>
   );
 }
+

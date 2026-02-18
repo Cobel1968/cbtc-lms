@@ -1,128 +1,60 @@
-"use client"
-import React, { useState, useEffect } from 'react'
-import TopNav from '@/components/TopNav'
-import { Clock, Zap, TrendingDown, Target, CheckCircle2, ChevronRight } from 'lucide-react'
+﻿import { createClient } from '@/lib/supabase-server';
+import Link from 'next/link';
 
-export default function StudentDashboard() {
-  const [optimizationApplied, setOptimizationApplied] = useState(false);
-  
-  // Simulation of the "Apply Optimization" connection
-  const originalHours = 40;
-  const optimizedHours = 26.5;
+export default async function StudentDashboard() {
+  const supabase = createClient();
+  const { data: assessments } = await supabase
+    .from('handwriting_assessments')
+    .select('*')
+    .order('processed_at', { ascending: false });
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
-      <TopNav />
-      
-      <main className="p-10 max-w-6xl mx-auto space-y-12">
-        {/* TIME NAVIGATION HEADER */}
-        <div className="flex justify-between items-center border-b border-slate-100 pb-8">
-          <div>
-            <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.3em]">Temporal Optimization Active</span>
-            <h1 className="text-4xl font-black uppercase italic tracking-tighter mt-1">My Technical Path</h1>
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] font-black text-slate-400 uppercase">Current Track</p>
-            <p className="text-lg font-black uppercase italic text-blue-600">Hydraulic Systems v4</p>
-          </div>
-        </div>
+    <div className="p-8 bg-slate-50 min-h-screen">
+      <div className="max-w-5xl mx-auto">
+        <header className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-black text-slate-900">Learning Portal</h1>
+          <Link href="/menu"><button className="bg-white border px-4 py-2 rounded-lg font-bold"> Menu</button></Link>
+        </header>
 
-        {/* FEATURE 3: TEMPORAL OPTIMIZATION PROGRESS BAR */}
-        <div className="bg-slate-900 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden">
-          <div className="relative z-10">
-            <div className="flex justify-between items-end mb-6">
-              <div>
-                <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest">Timeframe Prediction</p>
-                <h2 className="text-5xl font-black italic uppercase tracking-tighter">
-                  {optimizationApplied ? optimizedHours : originalHours} <span className="text-xl">Hours Rem.</span>
-                </h2>
-              </div>
-              <div className="text-right">
-                <p className="text-green-400 text-xs font-black uppercase italic">
-                  {optimizationApplied ? 'Optimization: Max Density' : 'Baseline Speed'}
-                </p>
-                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Est. Completion: March 12</p>
+        {/* FEEDBACK & ALLOCATION SECTION */}
+        <div className="grid gap-6 mb-10">
+          {assessments?.filter(a => a.trainer_feedback_text || a.allocated_module_code).map(a => (
+            <div key={a.id} className="bg-white border-l-8 border-blue-600 p-6 rounded-2xl shadow-sm animate-in fade-in slide-in-from-left">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-bold text-blue-600 text-sm uppercase">Trainer Instruction for {a.module_id}</h3>
+                  <p className="text-slate-800 mt-2 italic">"{a.trainer_feedback_text || 'No written feedback yet.'}"</p>
+                  {a.allocated_module_code && (
+                    <div className="mt-4 flex items-center gap-2">
+                      <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">New Module Unlocked: {a.allocated_module_code}</span>
+                      <Link href={`/modules/${a.allocated_module_code}`} className="text-blue-600 text-xs font-bold underline">Go to Module </Link>
+                    </div>
+                  )}
+                </div>
+                {a.trainer_feedback_audio_url && (
+                  <div className="text-right">
+                    <p className="text-[10px] font-bold text-slate-400 mb-1">AUDIO FEEDBACK</p>
+                    <audio src={a.trainer_feedback_audio_url} controls className="h-8 w-40" />
+                  </div>
+                )}
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* DYNAMIC PROGRESS BAR */}
-            <div className="relative h-4 w-full bg-white/10 rounded-full overflow-hidden mb-4">
-              <div 
-                className="h-full bg-blue-500 transition-all duration-1000 ease-out" 
-                style={{ width: optimizationApplied ? '65%' : '40%' }}
-              />
-              {/* SAVED TIME OVERLAY */}
-              <div 
-                className="absolute top-0 right-0 h-full bg-green-500/30 border-l border-green-400 border-dashed transition-all duration-1000" 
-                style={{ width: optimizationApplied ? '25%' : '0%' }}
-              />
+        <h2 className="text-xl font-bold text-slate-800 mb-4">Your Assessment Record</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          {assessments?.map((item) => (
+            <div key={item.id} className="bg-white p-4 rounded-xl border border-slate-200">
+              <div className="flex justify-between border-b pb-2 mb-2">
+                <span className="font-mono text-xs font-bold text-blue-500">{item.module_id}</span>
+                <span className="font-bold text-green-600">{item.bilingual_fluency_score}%</span>
+              </div>
+              <p className="text-sm text-slate-600 truncate">{item.raw_ocr_text}</p>
             </div>
-            
-            <div className="flex justify-between text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
-              <span>Orientation</span>
-              <span>Advanced Logic</span>
-              <span>Final Assessment</span>
-            </div>
-          </div>
-          
-          {/* BACKGROUND DECORATION */}
-          <div className="absolute top-0 right-0 p-10 opacity-10">
-            <Clock size={200} />
-          </div>
+          ))}
         </div>
-
-        {/* ANALYTIC CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <AnalyticCard 
-            icon={<Target size={20}/>} 
-            label="Curriculum Density" 
-            value={optimizationApplied ? "High" : "Standard"} 
-            sub="Based on Diagnostic" 
-          />
-          <AnalyticCard 
-            icon={<TrendingDown size={20}/>} 
-            label="Knowledge Gaps" 
-            value="2 detected" 
-            sub="Auto-remapping active" 
-            color="text-orange-500"
-          />
-          <div 
-            onClick={() => setOptimizationApplied(!optimizationApplied)}
-            className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex flex-col justify-center cursor-pointer hover:bg-blue-100 transition-all group"
-          >
-            <Zap size={24} className="text-blue-600 mb-2 group-hover:scale-110 transition-transform" />
-            <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Simulate Trainer</p>
-            <p className="text-xs font-bold text-slate-900 uppercase italic">Sync Optimization</p>
-          </div>
-        </div>
-
-        {/* NEXT MILESTONE PREVIEW */}
-        <div className="bg-slate-50 border border-slate-100 p-8 rounded-[2.5rem] flex items-center justify-between">
-          <div className="flex gap-6 items-center">
-             <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm text-blue-600">
-                <CheckCircle2 size={28} />
-             </div>
-             <div>
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Up Next</p>
-                <h4 className="text-lg font-black uppercase italic">Bilingual Fluency Audit (Oral)</h4>
-             </div>
-          </div>
-          <button className="bg-white border border-slate-200 p-4 rounded-2xl hover:bg-slate-900 hover:text-white transition-all">
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </main>
+      </div>
     </div>
-  )
-}
-
-function AnalyticCard({ icon, label, value, sub, color="text-blue-600" }: any) {
-  return (
-    <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm">
-      <div className={`${color} mb-4`}>{icon}</div>
-      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</p>
-      <p className="text-2xl font-black uppercase italic text-slate-900">{value}</p>
-      <p className="text-[9px] font-bold text-slate-400 uppercase mt-1">{sub}</p>
-    </div>
-  )
+  );
 }

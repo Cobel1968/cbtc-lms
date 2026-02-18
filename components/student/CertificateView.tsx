@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import React from 'react';
 import { Award, ShieldCheck } from 'lucide-react';
 
@@ -9,7 +9,7 @@ export default function CertificateView({ studentName, masteryScore, completionD
       
       <div className="text-center">
         <h1 className="text-4xl font-serif font-bold text-slate-900 mb-2">CERTIFICATE OF TECHNICAL FLUENCY</h1>
-        <h2 className="text-xl font-serif italic text-slate-600 mb-8 underline">Certificat de Maîtrise Technique</h2>
+        <h2 className="text-xl font-serif italic text-slate-600 mb-8 underline">Certificat de Ma�trise Technique</h2>
         
         <p className="text-lg text-slate-500 mb-2">This is to certify that / Ceci certifie que</p>
         <p className="text-3xl font-bold text-indigo-900 mb-8 uppercase tracking-widest">{studentName}</p>
@@ -38,3 +38,4 @@ export default function CertificateView({ studentName, masteryScore, completionD
     </div>
   );
 }
+

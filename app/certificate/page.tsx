@@ -1,24 +1,24 @@
-﻿'use client';
+'use client';
 import { useEffect, useState } from 'react';
 import { ShieldCheck, Download, Home, LayoutDashboard, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
-import Logo from '@/components/Logo';
+import Logo from "@/components/Logo";
 import { QRCodeSVG } from 'qrcode.react';
 
 export default function CertificatePage() {
   const [verificationUrl, setVerificationUrl] = useState('');
 
   useEffect(() => {
-    // URL dynamique basée sur le domaine actuel pour le QR Code
+    // URL dynamique bas�e sur le domaine actuel pour le QR Code
     if (typeof window !== 'undefined') {
       const baseUrl = window.location.origin;
-      setVerificationUrl(\/transcript); 
+      setVerificationUrl("/transcript"); 
     }
   }, []);
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col">
-      {/* BARRE DE NAVIGATION UNIFIÉE */}
+      {/* BARRE DE NAVIGATION UNIFI�E */}
       <nav className="bg-white border-b px-6 py-3 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center space-x-4">
           <Link href="/menu" className="p-2 hover:bg-slate-100 rounded-full transition-colors">
@@ -38,7 +38,7 @@ export default function CertificatePage() {
       </nav>
 
       <main className="flex-grow flex flex-col items-center justify-center p-6">
-        {/* LE DIPLÔME OFFICIEL */}
+        {/* LE DIPL�ME OFFICIEL */}
         <div className="max-w-4xl w-full bg-white border-[16px] border-slate-900 p-8 md:p-12 shadow-2xl relative overflow-hidden">
           
           <Logo className="absolute -bottom-16 -right-16 h-80 w-80 opacity-[0.03] -rotate-12" />
@@ -47,7 +47,7 @@ export default function CertificatePage() {
             <Logo className="h-12 w-auto mx-auto mb-8 text-slate-900" />
             
             <h1 className="text-blue-600 font-black uppercase tracking-[0.3em] text-[10px] mb-6">
-              Certificat de Compétence Professionnelle
+              Certificat de Comp�tence Professionnelle
             </h1>
             
             <div className="mb-10">
@@ -56,13 +56,13 @@ export default function CertificatePage() {
             </div>
 
             <p className="text-slate-500 max-w-lg mx-auto text-base italic font-serif mb-12">
-              A validé avec succès l'ensemble des modules bilingues via le moteur d'apprentissage adaptatif Cobel AI.
+              A valid� avec succ�s l'ensemble des modules bilingues via le moteur d'apprentissage adaptatif Cobel AI.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end mt-16">
               <div className="text-left border-t border-slate-200 pt-4">
-                <p className="text-[9px] uppercase font-black text-slate-400 tracking-widest">Délivré le</p>
-                <p className="text-sm font-bold text-slate-800">12 Fév 2026</p>
+                <p className="text-[9px] uppercase font-black text-slate-400 tracking-widest">D�livr� le</p>
+                <p className="text-sm font-bold text-slate-800">12 F�v 2026</p>
               </div>
               
               <div className="flex flex-col items-center">
@@ -90,3 +90,5 @@ export default function CertificatePage() {
     </div>
   );
 }
+
+

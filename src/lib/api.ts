@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabaseDB";
+import { supabase } from ".\/lib/supabaseDB";
 
 // Retrieve the API URL from your environment
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.cobelcenter.com";
@@ -82,3 +82,5 @@ export async function getMilestoneForecast(enrollmentId: string): Promise<ApiRes
 export async function getCourses(): Promise<ApiResponse<any>> {
   return apiRequest('/courses');
 }
+
+

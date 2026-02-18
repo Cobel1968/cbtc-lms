@@ -20,3 +20,4 @@ export const questionTemplate = {
   correct_answer: "A",
   difficulty_weight: 0.5 // Phase 3: Temporal Optimization
 };
+

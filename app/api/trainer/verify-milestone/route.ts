@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
+import { requireTrainerOrAdmin } from '@/lib/auth-route';
 
 export async function POST(request: Request) {
+  const auth = await requireTrainerOrAdmin();
+  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
   try {
     const body = await request.json();
     const studentId = body.studentId || 'Unknown';
@@ -17,3 +20,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Verification failed" }, { status: 500 });
   }
 }
+
+

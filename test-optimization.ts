@@ -1,4 +1,4 @@
-﻿import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -16,7 +16,7 @@ async function runTest() {
       course_id: 'vocational-training-001',
       fluency_score: 0.95,
       curriculum_density_update: -0.5, 
-      technical_terms_detected: { terms: ["système hydraulique", "maintenance"] }
+      technical_terms_detected: { terms: ["syst�me hydraulique", "maintenance"] }
     })
     .select();
 
@@ -29,3 +29,4 @@ async function runTest() {
 }
 
 runTest();
+

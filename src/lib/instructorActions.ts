@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 export const manualMilestoneOverride = async (studentId: string, moduleId: string, reason: string) => {
   // 1. Log the evidence for the Trust Layer (Feature 4)
@@ -19,3 +19,4 @@ export const manualMilestoneOverride = async (studentId: string, moduleId: strin
     .update({ status: 'completed', validated_by_instructor: true })
     .match({ student_id: studentId, module_id: moduleId });
 };
+

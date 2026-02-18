@@ -1,4 +1,4 @@
-﻿export const calculateMilestones = (fluencyScore: number, gapCount: number) => {
+export const calculateMilestones = (fluencyScore: number, gapCount: number) => {
   // Base time is 30 days
   // Each technical gap adds 2 days
   // High fluency ( > 80%) reduces time by 20%
@@ -10,3 +10,4 @@
     density: gapCount > 5 ? 'High' : 'Optimized'
   };
 };
+

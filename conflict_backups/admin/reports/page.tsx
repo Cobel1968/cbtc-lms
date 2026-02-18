@@ -1,6 +1,6 @@
-﻿'use client';
+'use client';
 import { useEffect, useState } from 'react';
-import { OptimizationCard } from '../../components/admin/OptimizationCard';
+import { OptimizationCard } from '../.@/components/admin/OptimizationCard';
 
 export default function CommandCenter() {
   const [students, setStudents] = useState([]);

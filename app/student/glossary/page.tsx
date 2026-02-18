@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Search, Languages, Volume2, CheckCircle2, AlertTriangle, BookOpen } from 'lucide-react'
 
 export default function TechnicalGlossary() {
@@ -88,3 +88,4 @@ export default function TechnicalGlossary() {
     </div>
   )
 }
+

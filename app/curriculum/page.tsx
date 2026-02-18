@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
@@ -30,7 +30,7 @@ export default function CurriculumPage() {
         <div className="p-8 font-sans">
             <h1 className="text-3xl font-bold mb-4">Adaptive Curriculum</h1>
             <p className="mb-6 text-gray-600">
-                Core Engine: {modules.length} Modules chargés par Temporal Optimization
+                Core Engine: {modules.length} Modules charg�s par Temporal Optimization
             </p>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {modules.map(mod => (
@@ -51,3 +51,4 @@ export default function CurriculumPage() {
         </div>
     );
 }
+

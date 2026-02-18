@@ -15,3 +15,4 @@ export default function AdminDashboard({ loading, studentData }: { loading: bool
     </div>
   );
 }
+

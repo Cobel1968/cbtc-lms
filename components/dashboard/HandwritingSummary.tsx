@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 import React from 'react'
 import { Printer, Eye, Lock, FileText, Mic } from 'lucide-react'
 
@@ -52,7 +52,7 @@ export default function HandwritingSummary({ studentData }: { studentData: any }
       <div className="space-y-3">
         <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Extracted Bilingual Terms</p>
         <div className="flex flex-wrap gap-2">
-          {["Distributeur", "Directional Valve", "Vérin", "Actuator"].map(term => (
+          {["Distributeur", "Directional Valve", "V�rin", "Actuator"].map(term => (
             <span key={term} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-[10px] font-bold text-cbtc-navy">
               {term}
             </span>
@@ -62,3 +62,4 @@ export default function HandwritingSummary({ studentData }: { studentData: any }
     </div>
   )
 }
+

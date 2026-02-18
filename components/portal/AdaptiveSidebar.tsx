@@ -27,3 +27,4 @@ export default function AdaptiveSidebar({ modules, currentId, timeSaved }) {
     </div>
   )
 }
+

@@ -36,3 +36,4 @@ export function mockOcrExtraction(text: string) {
     adjustment_minutes
   };
 }
+

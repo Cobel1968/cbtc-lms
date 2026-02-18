@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 export default function HandwritingCanvas() {
   return (
     <div className="border-4 border-dashed border-slate-200 rounded-3xl p-20 text-center">
@@ -9,3 +9,4 @@ export default function HandwritingCanvas() {
     </div>
   );
 }
+

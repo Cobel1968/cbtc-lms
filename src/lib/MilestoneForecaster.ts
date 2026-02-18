@@ -18,3 +18,4 @@ export const predict_graduation_date = (fluency_score: number, base_days: number
     completion_date: completion_date.toDateString()
   };
 }
+

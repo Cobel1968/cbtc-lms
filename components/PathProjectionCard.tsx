@@ -46,3 +46,4 @@ export default function PathProjectionCard({ baseWeeks, currentFluency }: Props)
     </div>
   );
 }
+

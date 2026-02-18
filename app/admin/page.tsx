@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import AdminDashboard from '@/components/dashboard/admindashboard'
+import AdminDashboard from "@/components/dashboard/admindashboard"
 
 export default function AdminPage() {
   return (
@@ -17,4 +17,5 @@ export default function AdminPage() {
     </div>
   )
 }
+
 

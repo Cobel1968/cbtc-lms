@@ -29,3 +29,4 @@ export function calculateDiagnostic(answers: any[], totalQuestions: number): Dia
     focusDomain: "Hydraulics" // Default for Module 1
   };
 }
+

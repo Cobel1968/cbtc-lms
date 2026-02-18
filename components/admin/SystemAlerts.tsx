@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { AlertCircle, ArrowRight } from 'lucide-react';
 
 export default function SystemAlerts({ alerts }) {
@@ -23,3 +23,4 @@ export default function SystemAlerts({ alerts }) {
     </div>
   );
 }
+

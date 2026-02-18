@@ -36,3 +36,4 @@ export default function CourseCard({ title, category, href, description }: Cours
     </div>
   );
 }
+

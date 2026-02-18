@@ -42,3 +42,4 @@ export default function BilingualText({ text, className = "" }: BilingualTextPro
     </span>
   );
 }
+

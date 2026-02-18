@@ -80,3 +80,4 @@ export default function BrandedTranscript({ studentName, density, hoursSaved, qr
     </button>
   );
 }
+

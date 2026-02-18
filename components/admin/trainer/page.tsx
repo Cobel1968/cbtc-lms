@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { CobelDB } from '@/lib/db-service';
 import React, { useEffect, useState } from 'react';
 
@@ -13,3 +13,4 @@ export default function TrainerPortal() {
     </div>
   );
 }
+

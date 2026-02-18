@@ -1,5 +1,5 @@
 // lib/engine/diagnosticlogic.ts
-import { createClient } from '@/utils/supabase/server'; 
+import { createClient } from '.\/utils/supabase/server'; 
 
 export async function getAdaptiveDiagnostic(courseId: string, studentLevel: 'beginner' | 'intermediate' | 'advanced') {
   const supabase = createClient();
@@ -28,3 +28,4 @@ export async function getAdaptiveDiagnostic(courseId: string, studentLevel: 'beg
 
   return data;
 }
+

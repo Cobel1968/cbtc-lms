@@ -1,4 +1,4 @@
-﻿export interface BillingMetrics {
+export interface BillingMetrics {
   standardDuration: number; // in hours
   currentPrediction: number; // in hours
   isOvertime: boolean;
@@ -27,3 +27,4 @@ export function calculateTemporalBilling(
     proRataCharge
   };
 }
+

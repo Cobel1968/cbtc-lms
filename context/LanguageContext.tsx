@@ -28,3 +28,4 @@ export const useLanguage = () => {
   if (!context) throw new Error('useLanguage must be used within a LanguageProvider');
   return context;
 };
+

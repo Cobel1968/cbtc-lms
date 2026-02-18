@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
-import TopNav from '@/components/TopNav'
-import MilestoneForecast from '@/components/portal/MilestoneForecast'
-import SecureUpload from '@/components/mobile/SecureUpload'
+import TopNav from "@/components/TopNav"
+import MilestoneForecast from "@/components/portal/MilestoneForecast"
+import SecureUpload from "@/components/mobile/SecureUpload"
 
 export default function StudentPortal() {
   return (
@@ -22,3 +22,4 @@ export default function StudentPortal() {
     </div>
   )
 }
+

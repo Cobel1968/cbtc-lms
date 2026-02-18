@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 import React, { useState, useRef } from 'react'
 import { Mic, Square, Play, UploadCloud, AlertCircle } from 'lucide-react'
 
@@ -54,3 +54,4 @@ export default function VocalRecorder({ promptId, expectedPhrases }: { promptId:
     </div>
   )
 }
+

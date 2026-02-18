@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { AlertTriangle } from 'lucide-react';
 
 interface FrictionBannerProps {
@@ -41,5 +41,6 @@ export default function FrictionBanner({ issue, missingTerms, onOverride }: Fric
     </div>
   );
 }
+
 
 

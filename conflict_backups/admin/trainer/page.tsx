@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
 
@@ -20,7 +20,7 @@ export default function TrainerQueue() {
           <div key={student.id} className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-200 flex justify-between items-center">
             <div>
               <h3 className="font-black uppercase text-lg">{student.name}</h3>
-              <p className="text-[10px] font-bold text-slate-400 uppercase">{student.course} • Enrolled {student.timeEnrolled}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase">{student.course} � Enrolled {student.timeEnrolled}</p>
             </div>
             
             <Link 

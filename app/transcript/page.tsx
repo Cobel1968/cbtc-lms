@@ -1,9 +1,9 @@
-﻿'use client';
+'use client';
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { FileText, CheckCircle2, Home, LayoutDashboard, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import Logo from '@/components/Logo';
+import Logo from "@/components/Logo";
 
 export default function TranscriptPage() {
   const [data, setData] = useState<any[]>([]);
@@ -16,7 +16,7 @@ export default function TranscriptPage() {
     );
 
     const fetchResults = async () => {
-      // Extraction dynamique de tous les modules injectés via Cobel Engine
+      // Extraction dynamique de tous les modules inject�s via Cobel Engine
       const { data: results, error } = await supabase
         .from('modules')
         .select('titre_francais, titre_anglais, credits_ects')
@@ -91,7 +91,7 @@ export default function TranscriptPage() {
           )}
         </div>
 
-        {/* NAVIGATION UNIFIÉE */}
+        {/* NAVIGATION UNIFI�E */}
         <div className="bg-slate-50 p-6 border-t border-slate-100 flex justify-between items-center">
            <Link href="/menu" className="flex items-center space-x-2 text-slate-500 hover:text-blue-600 font-bold text-sm transition-colors">
              <Home className="w-4 h-4" />
@@ -107,3 +107,4 @@ export default function TranscriptPage() {
     </div>
   );
 }
+

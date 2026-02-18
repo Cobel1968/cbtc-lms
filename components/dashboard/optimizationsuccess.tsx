@@ -51,3 +51,4 @@ export const OptimizationSuccess = ({ originalWeeks, optimizedWeeks, courseName 
     </div>
   );
 }
+

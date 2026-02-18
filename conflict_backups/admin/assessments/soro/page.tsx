@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 export default function HandwritingAnalysis() {
   return (
     <div className="p-10 bg-slate-50 min-h-screen">
@@ -11,8 +11,8 @@ export default function HandwritingAnalysis() {
             <p className="font-bold">Maintenance, Safety, Logic</p>
           </div>
           <div className="p-4 bg-slate-50 rounded-xl">
-            <p className="text-xs font-bold text-slate-400">FRANÃ‡AIS</p>
-            <p className="font-bold">Entretien, SÃ©curitÃ©, Logique</p>
+            <p className="text-xs font-bold text-slate-400">FRANÇAIS</p>
+            <p className="font-bold">Entretien, Sécurité, Logique</p>
           </div>
         </div>
       </div>

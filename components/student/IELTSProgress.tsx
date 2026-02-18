@@ -31,3 +31,4 @@ export default function IELTSProgress({ currentBand, targetBand, density }) {
     </div>
   );
 }
+

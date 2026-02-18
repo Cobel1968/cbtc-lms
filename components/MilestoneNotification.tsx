@@ -36,3 +36,4 @@ export const MilestoneNotification = ({ score, densityBoost, timeSaved }: { scor
 };
 
 export default MilestoneNotification;
+

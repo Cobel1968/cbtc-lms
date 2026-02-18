@@ -1,6 +1,9 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+// Fixed: Path alias and removed escape character
+import TopNav from "@/components/TopNav" 
+// Fixed: Added missing Link import for the final step button
+import Link from 'next/link'
 import { CheckCircle2, Zap, Clock, BookOpen } from 'lucide-react'
 
 export default function DiagnosticPage() {
@@ -52,12 +55,12 @@ export default function DiagnosticPage() {
               </div>
               <h2 className="text-2xl font-black text-slate-900 uppercase italic">Calculating Dynamic Path...</h2>
               <p className="text-slate-500 text-sm max-w-xs mx-auto">Our engine is cross-referencing your background with the curriculum density to optimize your timeframe.</p>
-              <button onClick={() => setStep(3)} className="text-blue-600 font-black uppercase text-[10px] tracking-widest pt-4">Simulate Completion</button>
+              <button onClick={() => setStep(3)} className="text-blue-600 font-black uppercase text-[10px] tracking-widest pt-4 hover:underline transition">Simulate Completion</button>
             </div>
           )}
 
           {step === 3 && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="bg-green-50 border border-green-100 p-6 rounded-3xl flex items-center gap-4">
                 <CheckCircle2 className="text-green-600" size={32} />
                 <div>
@@ -77,7 +80,7 @@ export default function DiagnosticPage() {
                  </div>
               </div>
 
-              <Link href="/student" className="block w-full bg-slate-900 text-white text-center py-5 rounded-2xl font-black uppercase text-sm hover:bg-blue-600 transition-all">
+              <Link href="/student" className="block w-full bg-slate-900 text-white text-center py-5 rounded-2xl font-black uppercase text-sm hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/10">
                 Enter Optimized Curriculum
               </Link>
             </div>

@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 export const scoreTechnicalFluency = async (extractedText: string, moduleId: string) => {
   // 1. Fetch relevant terms for this module (simplified for now)
@@ -27,3 +27,4 @@ export const scoreTechnicalFluency = async (extractedText: string, moduleId: str
   const score = Math.max(0, 100 - (missingWeight / totalWeight * 100));
   return { score, missingTerms };
 };
+

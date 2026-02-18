@@ -1,8 +1,8 @@
 "use client"
 import React, { useState, useRef } from 'react'
 import Link from 'next/link'
-import TopNav from '@/components/TopNav'
-import { supabase } from '@/lib/supabase'
+import TopNav from "@/components/TopNav"
+import { supabase } from "@/lib/supabase"
 import { Upload, CheckCircle2, FileSearch, RefreshCcw } from 'lucide-react'
 
 export default function FundamentalsModule() {
@@ -82,3 +82,4 @@ export default function FundamentalsModule() {
     </div>
   )
 }
+

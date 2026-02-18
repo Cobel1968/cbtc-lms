@@ -1,4 +1,4 @@
-﻿export const metadata = {
+export const metadata = {
   title: 'Cobel LMS - Vocational Engine',
   description: 'Bilingual Technical Mapping Diagnostic',
 }
@@ -14,3 +14,4 @@ export default function RootLayout({
     </html>
   )
 }
+

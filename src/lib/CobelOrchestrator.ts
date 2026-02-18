@@ -1,4 +1,4 @@
-﻿import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 import { analyzeHandwriting } from './handwritingAnalysis';
 import { calculateFriction } from './FrictionEngine';
 import { predictMilestones } from './ForecastingEngine';
@@ -26,3 +26,5 @@ export const runFullDiagnosticSync = async (fileUrl: string, studentId: string) 
   
   return { success: true, timeline };
 };
+
+

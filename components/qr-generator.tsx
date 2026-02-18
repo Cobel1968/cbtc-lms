@@ -43,3 +43,4 @@ export default function StudentQR({ studentId }: { studentId: string }) {
     </div>
   );
 }
+

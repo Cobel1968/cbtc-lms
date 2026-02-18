@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 
 export interface HandwritingAnalysisResult {
   confidence: number;
@@ -64,3 +64,5 @@ export const useOCRBridge = () => {
 
 // Maintain compatibility with existing default imports
 export default { analyzeHandwriting, useOCRBridge }
+
+

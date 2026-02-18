@@ -58,3 +58,4 @@ export const generateEmploymentContract = (trainerName: string, hourlyRate: numb
     </div>
   ;
 }
+

@@ -29,3 +29,5 @@ export async function GET() {
     averageFriction: data.length > 0 ? 1 - (data.reduce((s, a) => s + Number(a.bilingual_fluency_score), 0) / data.length) : 0
   });
 }
+
+

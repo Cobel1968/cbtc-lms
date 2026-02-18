@@ -11,3 +11,4 @@ export const simulateOCR = (baseScore: number) => {
     recommendation: totalFluency > 85 ? "Accelerate Pathway" : "Maintain Speed"
   };
 };
+

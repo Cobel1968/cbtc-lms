@@ -61,3 +61,4 @@ export function map_to_engine_result(result: ProcessingResult): Partial<OCRAsses
     processed_at: new Date().toISOString()
   };
 }
+

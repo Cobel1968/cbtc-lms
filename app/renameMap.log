@@ -1,0 +1,12 @@
+﻿api/courses/[id] -> api/courses/[courseId]
+entities/[id] -> entities/[entityId]
+api/courses/[id]/[id]/analytics -> api/courses/[courseId]/modules/[moduleId]/analytics
+courses/[id]/capture -> courses/[courseId]/capture
+api/admin/student/[id] -> api/admin/student/[studentId]
+api/courses/[id]/[id] -> api/courses/[courseId]/modules/[moduleId]
+api/[id] -> api/[entityId]
+courses/[id]/analysis -> courses/[courseId]/analysis
+courses/[id] -> courses/[courseId]
+api/courses/[id]/[id]/capture -> api/courses/[courseId]/modules/[moduleId]/capture
+verify/[id] -> verify/[verifyId]
+admin/student/[id] -> admin/student/[studentId]

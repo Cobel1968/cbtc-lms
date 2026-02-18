@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import Logo from '@/components/logo';
 import { createClientComponentClient } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
@@ -40,3 +40,4 @@ export default function LoginUI() {
     </div>
   );
 }
+

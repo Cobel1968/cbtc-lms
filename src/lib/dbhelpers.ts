@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 
 /**
  * PROACTIVE PRICING FETCH
@@ -96,3 +96,5 @@ export const recordSuccessfulPayment = async (userId: string, courseId: string, 
     .select();
   return { data, error };
 }
+
+

@@ -57,3 +57,4 @@ export const translations: Record<Language, Translations> = {
 export function getTranslations(lang: Language): Translations {
   return translations[lang];
 }
+

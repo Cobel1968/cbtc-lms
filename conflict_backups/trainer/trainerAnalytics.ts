@@ -1,4 +1,4 @@
-﻿import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '@/lib/supabaseDB';
 import { calculateOptimizedPath } from './pathMappingEngine';
 
 

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Languages, ShieldAlert, ArrowRight, HelpCircle, CheckCircle2 } from 'lucide-react'
 
 export default function ModuleOneAssessment() {
@@ -84,3 +84,4 @@ export default function ModuleOneAssessment() {
     </div>
   )
 }
+

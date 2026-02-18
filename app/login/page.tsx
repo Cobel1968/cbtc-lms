@@ -1,9 +1,10 @@
 "use client"
 import React, { useState } from 'react'
 import Link from 'next/link'
-import TopNav from '@/components/TopNav'
+// Fixed: Path aliases for components and lib
+import TopNav from "@/components/TopNav"
 import { Mail, Lock, Eye, EyeOff, ArrowRight, RefreshCcw } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase } from "@/lib/supabase"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -12,7 +13,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage('')
@@ -23,6 +24,7 @@ export default function LoginPage() {
       setMessage(`Error: ${error.message}`)
       setLoading(false)
     } else {
+      // Redirecting to the B2B portal as the entry point
       window.location.href = '/dashboard/b2b'
     }
   }
@@ -46,7 +48,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-50 border-none text-sm focus:ring-2 focus:ring-blue-500 transition-all" 
+                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-50 border-none text-sm focus:ring-2 focus:ring-blue-500 transition-all outline-none" 
               />
             </div>
 
@@ -58,7 +60,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-12 pr-12 py-4 rounded-2xl bg-slate-50 border-none text-sm focus:ring-2 focus:ring-blue-500 transition-all" 
+                className="w-full pl-12 pr-12 py-4 rounded-2xl bg-slate-50 border-none text-sm focus:ring-2 focus:ring-blue-500 transition-all outline-none" 
               />
               <button 
                 type="button"
@@ -70,12 +72,12 @@ export default function LoginPage() {
             </div>
 
             <div className="text-right">
-              <Link href="/reset-password" alt="reset" className="text-[10px] font-black uppercase text-blue-600 hover:underline tracking-widest">
+              <Link href="/reset-password" underline="none" className="text-[10px] font-black uppercase text-blue-600 hover:underline tracking-widest">
                 Forgot Password?
               </Link>
             </div>
 
-            {message && <p className="text-red-500 text-[10px] font-bold text-center uppercase">{message}</p>}
+            {message && <p className="text-red-500 text-[10px] font-bold text-center uppercase animate-pulse">{message}</p>}
 
             <button 
               disabled={loading}

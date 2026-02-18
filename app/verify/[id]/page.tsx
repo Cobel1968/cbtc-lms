@@ -1,1 +1,0 @@
-"use client"; export default function Fix() { return <div>Route Restored. Refreshing...</div> }

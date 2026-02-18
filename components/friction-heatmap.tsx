@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { supabase } from '@/lib/supabaseDB';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
@@ -60,4 +60,5 @@ export default function FrictionHeatmap() {
     </div>
   );
 }
+
 

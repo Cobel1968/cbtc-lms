@@ -1,5 +1,5 @@
 export const dynamic = 'force-dynamic';
-import { supabase } from '@/lib/supabase';
+import { supabase } from "@/lib/supabase";
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
@@ -43,3 +43,5 @@ export async function GET() {
         return NextResponse.json({ status: "Error", message: err.message }, { status: 500 });
     }
 }
+
+

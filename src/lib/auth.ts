@@ -1,4 +1,4 @@
-﻿import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export const useAuth = () => {
   const supabase = createClientComponentClient();
@@ -13,3 +13,4 @@ export const useAuth = () => {
   };
   return { signIn };
 };
+

@@ -71,3 +71,4 @@ async function performOCR(file: File | Blob): Promise<OCRResult> {
   // Logic to interface with Tesseract.js or Cloud Vision API
   return { rawText: "Sample extracted text from vocational exam...", confidence: 0.92 };
 }
+

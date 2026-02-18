@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 export default function FrictionDashboard({ alerts }) {
   return (
@@ -34,3 +34,4 @@ export default function FrictionDashboard({ alerts }) {
     </div>
   );
 }
+

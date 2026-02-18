@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useRouter } from 'next/navigation';
 
 interface PortalLinkProps {
@@ -22,3 +22,4 @@ export default function PortalLink({ title, path, color }: PortalLinkProps) {
     </button>
   );
 }
+

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { supabase } from '@/lib/supabaseDB';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
@@ -47,7 +47,7 @@ export default function BilingualFluencyChart({ studentId }: { studentId: string
 
         <div className="space-y-2">
           <div className="flex justify-between text-[10px] font-black uppercase">
-            <span>FranÃ§ais</span>
+            <span>Français</span>
             <span>{Math.round((frCount / total) * 100)}%</span>
           </div>
           <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
@@ -62,4 +62,5 @@ export default function BilingualFluencyChart({ studentId }: { studentId: string
     </div>
   );
 }
+
 

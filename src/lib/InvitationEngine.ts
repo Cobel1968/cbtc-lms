@@ -31,3 +31,4 @@ export const generateBilingualInvite = (data: InvitationData, lang: 'en' | 'fr')
 
   return content[lang];
 };
+

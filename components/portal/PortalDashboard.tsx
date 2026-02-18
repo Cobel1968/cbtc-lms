@@ -16,3 +16,4 @@ export default function PortalDashboard({ studentData }) {
     </div>
   );
 }
+

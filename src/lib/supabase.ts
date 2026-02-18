@@ -21,3 +21,4 @@ export const createUser = async (email, password, metadata) => {
 export const createEnrollment = async (enrollmentData) => {
   return await supabase.from('user_progress').insert([enrollmentData])
 }
+

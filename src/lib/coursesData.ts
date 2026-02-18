@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 export const dynamic = 'force-dynamic';
 
 export interface Course {
@@ -32,9 +32,9 @@ export const coursesData: Course[] = [
     id: 'HOSP-202',
     slug: 'hospitality-communication',
     name_en: 'Hospitality Communication',
-    name_fr: 'Communication Hôtelière',
+    name_fr: 'Communication H�teli�re',
     description_en: 'Professional English and French for the hospitality industry.',
-    description_fr: 'Anglais et Français professionnels pour l\'industrie hôtelière.',
+    description_fr: 'Anglais et Fran�ais professionnels pour l\'industrie h�teli�re.',
     category: 'Vocational',
     level: 'Intermediate',
     duration_weeks: 8,
@@ -91,3 +91,4 @@ export const sortCourses = (courses: Course[], criteria: string): Course[] => {
 };
 
 export default coursesData;
+

@@ -1,4 +1,4 @@
-﻿export interface Course {
+export interface Course {
   id: number;
   title_en: string;
   title_fr: string;
@@ -24,3 +24,4 @@ export interface Question {
   correct_key: string;
   domain?: string;
 }
+

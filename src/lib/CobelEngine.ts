@@ -22,3 +22,4 @@ export const checkTechnicalFluency = (text, glossary) => {
   const matches = glossary.filter(term => text.toLowerCase().includes(term.toLowerCase()));
   return Math.round((matches.length / glossary.length) * 100);
 }
+

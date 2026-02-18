@@ -65,3 +65,4 @@ async function testOCRBridge() {
 
 // Execute the suite
 testOCRBridge();
+

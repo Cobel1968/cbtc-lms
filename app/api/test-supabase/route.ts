@@ -1,9 +1,9 @@
-﻿import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  console.log(' [TEST-SUPABASE] Début')
+  console.log(' [TEST-SUPABASE] D�but')
   
   try {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -25,23 +25,23 @@ export async function GET() {
     }
 
     if (!serviceKey && !anonKey) {
-      console.error('[TEST-SUPABASE]  Clés manquantes')
+      console.error('[TEST-SUPABASE]  Cl�s manquantes')
       return Response.json({ 
         success: false,
-        error: 'Clés manquantes'
+        error: 'Cl�s manquantes'
       }, { status: 500 })
     }
 
     const key = serviceKey || anonKey
     const keyType = serviceKey ? 'SERVICE_ROLE' : 'ANON'
     
-    console.log('[TEST-SUPABASE] Création client:', keyType)
+    console.log('[TEST-SUPABASE] Cr�ation client:', keyType)
     
     const supabase = createClient(url, key, {
       auth: { persistSession: false }
     })
     
-    console.log('[TEST-SUPABASE] Requête modules...')
+    console.log('[TEST-SUPABASE] Requ�te modules...')
     
     const { data, error, count } = await supabase
       .from('modules')
@@ -59,11 +59,11 @@ export async function GET() {
       }, { status: 500 })
     }
 
-    console.log('[TEST-SUPABASE]  Succès! Count:', count)
+    console.log('[TEST-SUPABASE]  Succ�s! Count:', count)
 
     return Response.json({ 
       success: true,
-      message: 'Supabase opérationnel!',
+      message: 'Supabase op�rationnel!',
       diagnostics: {
         connection: 'OK',
         keyType,
@@ -81,3 +81,5 @@ export async function GET() {
     }, { status: 500 })
   }
 }
+
+

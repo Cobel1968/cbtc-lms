@@ -67,3 +67,4 @@ export default function TroubleshootingCircuit({ density }: { density: number })
     </div>
   )
 }
+

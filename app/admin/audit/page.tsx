@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '@/components/Sidebar';
-import GodModeGuard from '@/components/auth/GodModeGuard';
+import Sidebar from "@/components/Sidebar";
+import GodModeGuard from "@/components/auth/GodModeGuard";
 
 export default function AuditPage() {
   return (
@@ -15,5 +15,6 @@ export default function AuditPage() {
     </GodModeGuard>
   );
 }
+
 
 

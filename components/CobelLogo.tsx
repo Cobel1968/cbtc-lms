@@ -13,3 +13,4 @@ export const CobelLogo = ({ className = "h-8" }: { className?: string }) => {
     </div>
   );
 };
+

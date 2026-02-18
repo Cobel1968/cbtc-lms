@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { useEffect, useState } from 'react';
 import Navigation from '@/components/navigation';
 import StudentQR from '@/components/qr-generator';

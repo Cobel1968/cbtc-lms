@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Award, Lock, ShieldCheck, ChevronRight, FileText, CheckCircle2 } from 'lucide-react'
 
 export default function SummativeGateway() {
@@ -77,3 +77,4 @@ export default function SummativeGateway() {
     </div>
   )
 }
+

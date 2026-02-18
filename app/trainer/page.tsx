@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import Sidebar from '@/components/Sidebar'
-import TopNav from '@/components/TopNav'
+import Sidebar from "@/components/Sidebar"
+import TopNav from "@/components/TopNav"
 import { AlertTriangle } from 'lucide-react'
 
 export default function InstructorPortal() {
@@ -26,3 +26,4 @@ export default function InstructorPortal() {
     </div>
   )
 }
+

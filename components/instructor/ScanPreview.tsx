@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import React from 'react';
 
 interface ScanPreviewProps {
@@ -37,3 +37,4 @@ export default function ScanPreview({ imageUrl, extractedText, onClose }: ScanPr
     </div>
   );
 }
+

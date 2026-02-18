@@ -14,3 +14,4 @@ export async function getStudentCredential(studentId: string) {
   if (profileError || vaultError) return null;
   return { profile, vaultFiles, timestamp: new Date().toLocaleDateString() };
 }
+

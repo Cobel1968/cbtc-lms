@@ -1,12 +1,12 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import TopNav from '@/components/TopNav'
-import CourseSidebar from "@/components/CourseSidebar"
-import HandwritingUpload from '@/components/portal/HandwritingUpload'
-import CurriculumMap from '@/components/portal/CurriculumMap'
-import MilestoneForecast from '@/components/portal/MilestoneForecast'
-import BillingModule from '@/components/portal/BillingModule'
-import { supabase } from '@/lib/supabase'
+import TopNav from "@/components/TopNav"
+import CourseSidebar from ".\/components/CourseSidebar"
+import HandwritingUpload from "@/components/portal/HandwritingUpload"
+import CurriculumMap from "@/components/portal/CurriculumMap"
+import MilestoneForecast from "@/components/portal/MilestoneForecast"
+import BillingModule from "@/components/portal/BillingModule"
+import { supabase } from "@/lib/supabase"
 
 export default function StudentPortal() {
   const [mounted, setMounted] = useState(false)
@@ -69,3 +69,4 @@ export default function StudentPortal() {
     </div>
   )
 }
+

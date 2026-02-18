@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 export async function sealAssessment(fileName: string, studentId: string) {
   const sourcePath = `${studentId}/scanned/${fileName}`;
@@ -24,3 +24,4 @@ export async function sealAssessment(fileName: string, studentId: string) {
     return { success: false, error: err.message };
   }
 }
+

@@ -1,13 +1,11 @@
 export const dynamic = 'force-dynamic';
-import { supabase } from '@/lib/supabase';
+import { supabase } from "@/lib/supabase";
 import { NextResponse } from 'next/server';
-
-// Innovation: Temporal Optimization - Ensures real-time data for the friction dashboard
+import { requireTrainerOrAdmin } from '@/lib/auth-route';
 
 export async function GET() {
-  // Use our unified server client utility
-  
-  
+  const auth = await requireTrainerOrAdmin();
+  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
   const { data, error } = await supabase
     .from('friction_logs')
     .select('term, friction_index, created_at')
@@ -20,4 +18,6 @@ export async function GET() {
 
   return NextResponse.json(data);
 }
+
+
 

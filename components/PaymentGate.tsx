@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState } from 'react';
 import { CreditCard, Smartphone, CheckCircle } from 'lucide-react';
 
@@ -50,3 +50,4 @@ export default function PaymentGate({ amount }: { amount: string }) {
     </div>
   );
 }
+

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase, createUser } from '@/lib/supabase';
+import { supabase, createUser } from "@/lib/supabase";
 
 export const dynamic = 'force-dynamic';
 
@@ -75,3 +75,5 @@ export async function POST(req: Request) {
     );
   }
 }
+
+

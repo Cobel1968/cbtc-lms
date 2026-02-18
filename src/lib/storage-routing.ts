@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 /**
  * BUCKET DEFINITIONS
@@ -26,6 +26,7 @@ export async function uploadAssessmentFile(file: File, studentId: string, type: 
  * the Trainer has adjusted curriculum density.
  */
 export async function sealEvidence(sourcePath: string, studentId: string) {
-  console.log(`🔒 Moving ${sourcePath} to Secured Evidence Vault for ${studentId}`);
+  console.log(`?? Moving ${sourcePath} to Secured Evidence Vault for ${studentId}`);
   // Implementation for copying between buckets would go here
 }
+

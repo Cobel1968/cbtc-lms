@@ -45,3 +45,4 @@ export default function StudentHandwritingUpload({ studentId }: { studentId: str
     </div>
   );
 }
+

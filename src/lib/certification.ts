@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 export async function checkGraduationStatus(studentId: string) {
   // Check if all modules in the Dynamic Path Mapping are 'completed'
@@ -18,3 +18,4 @@ export async function checkGraduationStatus(studentId: string) {
     timestamp: new Date().toISOString()
   };
 }
+

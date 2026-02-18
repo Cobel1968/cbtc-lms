@@ -10,3 +10,4 @@ export const calculateMilestone = (currentDensity: number, remainingHours: numbe
     status: currentDensity > 1 ? 'Accelerated' : 'Standard'
   };
 };
+

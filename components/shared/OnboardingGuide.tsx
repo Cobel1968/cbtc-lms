@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from 'react';
 import { BookOpen, Camera, Zap } from 'lucide-react';
 
@@ -33,3 +33,4 @@ export default function OnboardingGuide() {
     </div>
   );
 }
+

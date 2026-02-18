@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Languages, CheckCircle2, AlertCircle } from 'lucide-react'
 
 export default function FluencyModule() {
@@ -59,3 +59,4 @@ export default function FluencyModule() {
     </div>
   )
 }
+

@@ -1,4 +1,4 @@
-﻿import { createClientComponentClient } from './lib/supabase';
+import { createClientComponentClient } from '@/lib/supabase';
 const supabase = createClientComponentClient();
 
 async function checkInflation() {

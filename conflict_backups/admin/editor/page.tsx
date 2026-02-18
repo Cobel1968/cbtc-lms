@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -32,7 +32,7 @@ export default function CurriculumEditor() {
       {/* FIXED NAVIGATION BREADCRUMB */}
       <nav className="mb-10">
         <Link href="/admin" className="text-[10px] font-black uppercase text-slate-500 hover:text-emerald-500 transition-all flex items-center gap-2">
-          ← Back to Command Center
+          ? Back to Command Center
         </Link>
       </nav>
 

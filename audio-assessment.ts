@@ -2,10 +2,10 @@ import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
 import * as fs from 'fs';
 
-const openai = new OpenAI({ apiKey: 'YOUR_OPENAI_API_KEY' });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || '' });
 const supabase = createClient(
-    "https://rvlcpygatguvxhuliand.supabase.co", 
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2bGNweWdhdGd1dnhodWxpYW5kIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MjE0ODMzMywiZXhwIjoyMDc3NzI0MzMzfQ.shtG62BDC1rVeYvSCq04KjW0cFNp0joALVMdUoE38tc"
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 );
 
 async function processVerbalEvidence(filePath: string, profId: string) {

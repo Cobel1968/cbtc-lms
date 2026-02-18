@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 
 /**
  * COBEL AI ENGINE - Temporal Optimization
@@ -48,3 +48,5 @@ export async function updateStudentPath(userId: string, extractedTerms: any[]) {
     return { success: false };
   }
 }
+
+

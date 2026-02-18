@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase } from "@/lib/supabase";
+import { requireAdmin } from '@/lib/auth-route';
 
 export async function GET(req: Request) {
+  const auth = await requireAdmin();
+  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
   const { searchParams } = new URL(req.url);
   const studentId = searchParams.get('studentId');
 
@@ -32,3 +35,5 @@ export async function GET(req: Request) {
     summary: reportData 
   });
 }
+
+

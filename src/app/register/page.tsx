@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useState, useEffect } from 'react';
 
 export default function StudentRegister() {
@@ -26,3 +26,4 @@ export default function StudentRegister() {
     </div>
   );
 }
+

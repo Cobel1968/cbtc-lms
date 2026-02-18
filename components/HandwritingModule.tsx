@@ -75,3 +75,4 @@ export default function HandwritingModule({ onAnalysisComplete }: { onAnalysisCo
     </div>
   )
 }
+

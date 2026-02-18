@@ -73,3 +73,4 @@ export default function HandwritingIngestion({ courseContext, onScanComplete }: 
     </div>
   );
 }
+

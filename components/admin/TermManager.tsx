@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Plus, Trash2, Save } from 'lucide-react';
@@ -64,3 +64,4 @@ export default function TermManager({ initialTerms }) {
     </div>
   );
 }
+

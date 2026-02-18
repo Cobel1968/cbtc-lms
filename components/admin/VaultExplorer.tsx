@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ShieldCheck, Download, Search, FileArchive } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../.@/lib/supabase';
 
 export default function VaultExplorer() {
   const [studentId, setStudentId] = useState('');
@@ -62,3 +62,4 @@ export default function VaultExplorer() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-﻿/* @ts-ignore */
+/* @ts-ignore */
 export const calculateCompletionForecast = (
   startDate: Date,
   baseWeeks: number,
@@ -30,4 +30,5 @@ export const calculateIELTSForecast = (currentBand: number, targetBand: number, 
     isAtRisk: density > 1.4
   };
 };
+
 

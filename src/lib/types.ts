@@ -133,3 +133,4 @@ export interface LearningContract {
 export type CourseCategory = 'tech' | 'language' | 'business';
 export type CourseLevel = 'beginner' | 'intermediate' | 'advanced';
 export type SortOption = 'popularity' | 'price-asc' | 'price-desc' | 'rating' | 'duration';
+

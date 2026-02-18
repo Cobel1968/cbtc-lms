@@ -63,3 +63,4 @@ export default function CourseSidebar({ stats }: SidebarProps) {
     </aside>
   )
 }
+

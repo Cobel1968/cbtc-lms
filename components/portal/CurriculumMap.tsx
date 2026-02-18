@@ -20,3 +20,4 @@ export default function CurriculumMap({ timeSaved = 45 }) {
     </div>
   )
 }
+

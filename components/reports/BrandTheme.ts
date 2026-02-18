@@ -1,4 +1,4 @@
-﻿export const CBTC_THEME = {
+export const CBTC_THEME = {
   colors: {
     navy: '#002D62',     // Cobel Primary Navy
     magenta: '#E11D48',  // Cobel Innovation Magenta
@@ -7,3 +7,4 @@
   },
   logo: '/brand/cobel-logo.png' 
 };
+

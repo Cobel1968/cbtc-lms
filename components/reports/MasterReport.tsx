@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { CBTC_THEME } from './BrandTheme';
 
@@ -67,3 +67,4 @@ export const MasterReport = ({ student, assessments }) => (
     </Page>
   </Document>
 );
+

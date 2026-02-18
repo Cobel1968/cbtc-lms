@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 import React from 'react'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import { MasterReport } from './MasterReport'
@@ -40,3 +40,4 @@ export default function DownloadReportButton({ student, assessments }) {
     </div>
   )
 }
+

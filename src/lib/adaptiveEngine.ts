@@ -16,3 +16,4 @@ export const triggerInjection = (courseId: string, failedTerm: string) => {
   }
   return null;
 };
+

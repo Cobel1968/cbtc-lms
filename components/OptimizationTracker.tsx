@@ -20,3 +20,4 @@ export default function OptimizationTracker({ density = 1.0 }) {
     </div>
   );
 }
+

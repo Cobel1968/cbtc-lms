@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 
@@ -55,3 +55,4 @@ export default function Leaderboard() {
     </div>
   );
 }
+

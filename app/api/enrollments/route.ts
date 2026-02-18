@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createEnrollment } from '@/lib/supabase'
+import { createEnrollment } from "@/lib/supabase"
 
 export async function POST(request: Request) {
   try {
@@ -12,3 +12,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
+
+

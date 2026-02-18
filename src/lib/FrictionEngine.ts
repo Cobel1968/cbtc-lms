@@ -37,3 +37,4 @@ export function calculate_friction_index(data: friction_data[]) {
     };
   }).sort((a, b) => Number(b.friction_index) - Number(a.friction_index));
 }
+

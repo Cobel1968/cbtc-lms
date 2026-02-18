@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase'; // Adjust based on your client location
 
 export function useAssessments() {
@@ -32,3 +32,4 @@ export function useAssessments() {
 
   return { data, loading };
 }
+

@@ -1,10 +1,18 @@
 export const dynamic = 'force-dynamic';
-import { supabase } from '../../../src/lib/supabase';
+import { supabase } from "@/lib/supabase";
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth-route';
 import fs from 'fs';
 import path from 'path';
 
 export async function GET(request: Request) {
+    const auth = await requireAdmin();
+    if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
+    if (process.env.NODE_ENV === 'production') {
+        const { searchParams } = new URL(request.url);
+        if (searchParams.get('rollback') === 'true')
+            return NextResponse.json({ error: 'Rollback disabled in production' }, { status: 403 });
+    }
     const { searchParams } = new URL(request.url);
     if (searchParams.get('rollback') === 'true') {
         await supabase.from('modules').delete().neq('id', '00000000-0000-0000-0000-000000000000');
@@ -42,3 +50,5 @@ export async function GET(request: Request) {
         issues: errorLogs 
     });
 }
+
+

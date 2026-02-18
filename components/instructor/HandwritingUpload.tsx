@@ -74,3 +74,4 @@ export default function StudentHandwritingUpload({ studentId, courseId }: Props)
     </div>
   );
 }
+

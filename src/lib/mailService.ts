@@ -19,3 +19,4 @@ export const sendContractEmail = async (toEmail: string, studentName: string, co
     return { success: false }
   }
 }
+

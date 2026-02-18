@@ -1,4 +1,4 @@
-﻿export const EngineVault = {
+export const EngineVault = {
   // Enhanced filing logic
   async uploadAssessment(file, studentId, courseId, role, isDiagnostic = false) {
     const prefix = isDiagnostic ? 'proctored' : 'student';
@@ -12,3 +12,4 @@
     return { path: data?.path, error };
   }
 };
+

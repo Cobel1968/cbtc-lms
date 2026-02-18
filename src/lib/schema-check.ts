@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 export async function checkCompatibility() {
   console.log(" Starting Cobel AI Schema Alignment Check...");
@@ -21,3 +21,4 @@ export async function checkCompatibility() {
     
   console.log(" CONFIGURATION: Env variables and Database handshake successful.");
 }
+

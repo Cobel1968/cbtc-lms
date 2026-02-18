@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { 
   BarChart3, Mic, PenTool, TrendingUp, 
   AlertTriangle, CheckCircle2, RotateCcw, 
@@ -147,3 +147,4 @@ function IngestionRow({ name, type, track, status, time, color = "text-blue-600"
     </div>
   )
 }
+

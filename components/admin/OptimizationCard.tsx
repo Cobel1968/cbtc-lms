@@ -56,3 +56,4 @@ export const OptimizationCard = ({ data }: { data: StudentInsight }) => {
     </div>
   );
 };
+

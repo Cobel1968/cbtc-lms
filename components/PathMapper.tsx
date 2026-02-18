@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 export default function PathMapper() {
   return (
     <div className="bg-white shadow-xl rounded-3xl p-8 border-b-8 border-[#00629B]">
@@ -10,3 +10,4 @@ export default function PathMapper() {
     </div>
   );
 }
+

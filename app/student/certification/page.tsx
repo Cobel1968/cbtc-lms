@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Award, FileText, Download, Share2, ShieldCheck, Languages, Zap } from 'lucide-react'
 
 export default function CertificationCenter() {
@@ -120,3 +120,4 @@ function TranscriptRow({ label, score }: any) {
     </div>
   )
 }
+

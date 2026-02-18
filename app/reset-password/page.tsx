@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Mail, Send } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase } from "@/lib/supabase"
 
 export default function ResetPage() {
   const [email, setEmail] = useState('')
@@ -51,3 +51,4 @@ export default function ResetPage() {
     </div>
   )
 }
+

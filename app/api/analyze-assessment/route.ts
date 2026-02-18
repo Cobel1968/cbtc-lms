@@ -1,9 +1,9 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/supabase-server';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    const supabase = await createClient();
+    const supabase = createClient();
     const body = await req.json();
     console.log('[Cobel AI Engine] Analyzing technical fluency...');
     
@@ -12,3 +12,5 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Analysis failed" }, { status: 500 });
   }
 }
+
+

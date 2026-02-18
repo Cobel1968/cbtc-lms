@@ -125,3 +125,4 @@ export default function StudentDashboardUI({ initialProfile, user }: any) {
     </div>
   );
 }
+

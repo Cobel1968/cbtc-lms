@@ -41,3 +41,4 @@ export const processHandwritingAssessment = async (assessment: HandwritingAssess
     return { success: false, error };
   }
 };
+

@@ -1,4 +1,4 @@
-﻿import { createClient } from '@/utils/supabase/server';
+import { createClient } from '.\/utils/supabase/server';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -11,3 +11,5 @@ export async function GET() {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(courses);
 }
+
+

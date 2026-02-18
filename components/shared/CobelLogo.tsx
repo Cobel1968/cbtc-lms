@@ -35,3 +35,4 @@ export default function CobelLogo({ width = 180, height = 60, showSubtext = true
     </div>
   );
 }
+

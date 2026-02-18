@@ -28,3 +28,4 @@ export const vocationalCourses = [
     terms: [{ en: "Coherence", fr: "Cohérence", critical: true }]
   }
 ];
+

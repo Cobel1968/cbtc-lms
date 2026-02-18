@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '.\/lib/supabase';
 
 
 
@@ -20,3 +20,5 @@ export const processAudioAssessment = async (audioUrl: string) => {
 
   return { transcript, error };
 };
+
+

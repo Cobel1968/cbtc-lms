@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 interface LogoProps {
   className?: string;
@@ -26,3 +26,4 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
 };
 
 export default Logo;
+

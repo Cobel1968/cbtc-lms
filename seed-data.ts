@@ -1,9 +1,9 @@
-﻿import { supabase } from './lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 const initialCourses = [
   { 
     title_en: 'Advanced Hydraulic Systems', 
-    title_fr: 'Systèmes Hydrauliques Avancés', 
+    title_fr: 'Syst�mes Hydrauliques Avanc�s', 
     description: 'Bilingual technical mastery of fluid power.',
     category: 'Mechanical',
     density: 0.85 
@@ -17,7 +17,7 @@ const initialCourses = [
   },
   { 
     title_en: 'Electrical Circuit Troubleshooting', 
-    title_fr: 'Dépannage des Circuits Électriques', 
+    title_fr: 'D�pannage des Circuits �lectriques', 
     description: 'Diagnostics for complex vocational wiring.',
     category: 'Electrical',
     density: 0.78 

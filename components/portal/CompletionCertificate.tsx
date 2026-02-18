@@ -64,3 +64,4 @@ export default function CompletionCertificate({ studentName, timeSaved }: { stud
     </div>
   )
 }
+

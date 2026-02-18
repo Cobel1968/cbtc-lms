@@ -17,3 +17,4 @@ export const generateCertificate = (studentName: string, courseName: string, sco
   doc.text(`Technical Fluency Score: ${score}%`, 148, 160, { align: 'center' });
   doc.save('Cobel-Certificate.pdf');
 };
+

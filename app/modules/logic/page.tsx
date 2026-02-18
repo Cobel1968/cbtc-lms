@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { Zap, TrendingDown, Clock } from 'lucide-react'
 
 export default function LogicModule() {
@@ -47,3 +47,4 @@ export default function LogicModule() {
     </div>
   )
 }
+

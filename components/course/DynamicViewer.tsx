@@ -42,3 +42,4 @@ export default function DynamicViewer({ courseId, htmlPath }: { courseId: string
     </div>
   );
 }
+

@@ -47,3 +47,4 @@ export const ingestHandwritingScan = async (fileUrl: string): Promise<Handwritin
     return processedData;
   }
 };
+

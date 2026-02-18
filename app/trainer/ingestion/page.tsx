@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import TopNav from '@/components/TopNav'
+import TopNav from "@/components/TopNav"
 import { FileText, Mic, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 
 export default function TrainerIngestion() {
@@ -56,3 +56,4 @@ export default function TrainerIngestion() {
     </div>
   )
 }
+

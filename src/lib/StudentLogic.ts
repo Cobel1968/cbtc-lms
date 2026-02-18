@@ -1,6 +1,6 @@
 'use client';
 export const dynamic = 'force-dynamic';
-import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 
 /**
  * Feature 4: Analog-to-Digital Pedagogical Bridge
@@ -30,3 +30,5 @@ export async function get_student_metrics(user_id: string): Promise<{
     fluency_score: data?.bilingual_fluency_score ?? 0
   };
 }
+
+

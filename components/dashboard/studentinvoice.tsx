@@ -41,3 +41,4 @@ export const StudentInvoice = ({ enrollmentId }: { enrollmentId: string }) => {
     </div>
   );
 }
+

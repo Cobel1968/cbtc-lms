@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useState } from 'react';
 
 export default function EmployerRegister() {
@@ -37,3 +37,4 @@ export default function EmployerRegister() {
     </div>
   );
 }
+

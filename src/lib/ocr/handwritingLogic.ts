@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 
 const VOCATIONAL_DICTIONARY: Record<string, { en: string; cat: string; weight: number }> = {
     // Quality & Finance
@@ -44,3 +44,4 @@ export function useOCRBridge() {
         isProcessing: false
     };
 }
+

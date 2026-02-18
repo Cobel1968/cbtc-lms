@@ -64,3 +64,4 @@ export const mockOcrExtraction = (rawText: string): OcrResult => {
     adjustment_minutes
   };
 };
+

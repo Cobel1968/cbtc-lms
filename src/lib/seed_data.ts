@@ -21,3 +21,4 @@ export const questionBank = Array.from({ length: 191 }, (_, i) => ({
   category: i < 60 ? "Diagnostic" : i < 130 ? "Safety" : "Reporting",
   difficulty: (i % 3) + 1 // 1: Basic, 2: Intermediate, 3: Expert
 }));
+

@@ -20,9 +20,9 @@ serve(async (req) => {
 
     // 2. OCR PROCESS (Conceptual: Integrate with Tesseract.js or Google Vision API)
     // For now, we simulate the extraction of technical terms
-    const extractedText = "Le système de forage nécessite une maintenance préventive.";
+    const extractedText = "Le systï¿½me de forage nï¿½cessite une maintenance prï¿½ventive.";
     const detectedTerms = {
-      fr: ["système de forage", "maintenance préventive"],
+      fr: ["systï¿½me de forage", "maintenance prï¿½ventive"],
       en: ["drilling system", "preventative maintenance"],
       confidence: 0.95
     };
@@ -50,3 +50,4 @@ serve(async (req) => {
     })
   }
 })
+

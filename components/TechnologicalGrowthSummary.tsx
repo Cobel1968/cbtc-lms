@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useEffect, useState } from 'react';
 import { TrendingUp, Award, Globe } from 'lucide-react';
 import { supabase } from '@/lib/supabaseDB';
@@ -65,5 +65,6 @@ export default function TechnicalGrowthSummary() {
     </div>
   );
 }
+
 
 

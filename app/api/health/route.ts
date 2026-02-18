@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
-import { createServerClient } from '@/lib/supabase-server';
+import { createServerClient } from "@/lib/supabase-server";
 
 export async function GET() {
   try {
@@ -8,8 +8,8 @@ export async function GET() {
     
     // Test database connection to ensure Cobel Engine can access technical data
     const { error } = await supabase
-      .from('users')
-      .select('count', { count: 'exact', head: true })
+      .from('courses')
+      .select('id', { count: 'exact', head: true })
       .limit(1);
     
     if (error) {
@@ -39,3 +39,5 @@ export async function GET() {
     );
   }
 }
+
+

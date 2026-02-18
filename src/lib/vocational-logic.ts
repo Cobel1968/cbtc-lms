@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabaseDB';
+import { supabase } from '.\/lib/supabaseDB';
 
 export async function mapTechnicalTerms(rawText: string, courseId: string) {
   if (!rawText || rawText.length < 5) return [];
@@ -24,3 +24,4 @@ export async function mapTechnicalTerms(rawText: string, courseId: string) {
 
   return matches || [];
 }
+

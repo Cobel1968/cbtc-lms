@@ -26,11 +26,12 @@ serve(async (req) => {
     if (!file || !userId) throw new Error('Missing file or userId')
 
     // 2. Perform OCR (Example using a fetch to an OCR service)
-    // Replace 'YOUR_OCR_API_KEY' with your actual key in Supabase Secrets
+    const ocrKey = Deno.env.get('OCR_API_KEY')
+    if (!ocrKey) throw new Error('OCR_API_KEY secret not set in Supabase Edge Function')
     const ocrResponse = await fetch('https://api.ocr.space/parse/image', {
       method: 'POST',
-      headers: { 'apikey': Deno.env.get('OCR_API_KEY') || 'helloworld' },
-      body: formData // Sends the image directly
+      headers: { 'apikey': ocrKey },
+      body: formData
     })
     
     const ocrData = await ocrResponse.json()
@@ -73,3 +74,4 @@ serve(async (req) => {
     )
   }
 })
+

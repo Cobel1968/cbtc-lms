@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '@/components/Sidebar';
+import Sidebar from "@/components/Sidebar";
 
 export default function pagePage() {
   return (
@@ -11,5 +11,6 @@ export default function pagePage() {
     </div>
   );
 }
+
 
 

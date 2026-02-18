@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
-import TopNav from '@/components/TopNav'
+// Fixed: Changed from '@/components/TopNav' to '@/components/TopNav'
+import TopNav from "@/components/TopNav" 
 import { Award, CheckCircle2, Zap, Download, Share2 } from 'lucide-react'
 
 export default function CertificationPage() {

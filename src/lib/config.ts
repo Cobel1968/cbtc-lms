@@ -6,3 +6,4 @@ export const COBEL_THEME = {
     text: '#333333'
   }
 };
+

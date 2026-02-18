@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { Award, FileText, Download } from 'lucide-react';
 
 export default function Certificate({ studentName, modules, score }: { studentName: string, modules: any[], score: number }) {
@@ -27,7 +27,7 @@ export default function Certificate({ studentName, modules, score }: { studentNa
             <tr className="border-b text-xs text-slate-400 uppercase">
               <th className="py-2">Technical Module</th>
               <th>English Competency</th>
-              <th>Compétence Française</th>
+              <th>Comp�tence Fran�aise</th>
               <th>Fluency</th>
             </tr>
           </thead>
@@ -36,7 +36,7 @@ export default function Certificate({ studentName, modules, score }: { studentNa
               <tr key={i} className="border-b hover:bg-slate-50 transition-colors">
                 <td className="py-4 font-bold text-[#00629B]">{m.title}</td>
                 <td className="text-sm">Pass</td>
-                <td className="text-sm">Réussi</td>
+                <td className="text-sm">R�ussi</td>
                 <td><span className="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-black">98.2%</span></td>
               </tr>
             ))}
@@ -49,3 +49,4 @@ export default function Certificate({ studentName, modules, score }: { studentNa
     </div>
   );
 }
+

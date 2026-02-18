@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
-import { createBuildSafeClient } from '@/lib/supabase';
+import { createBuildSafeClient } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -33,3 +33,5 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+

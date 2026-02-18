@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 
 async function getCourses() {
   try {
@@ -41,3 +41,4 @@ export default async function CurriculumPage() {
     </div>
   );
 }
+

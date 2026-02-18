@@ -4,3 +4,4 @@ export const localCourses = [
   { id: 3, title: "Advanced Vocational Logic", category: "Logic" },
   // ... (I can provide the full 9-course list if you need)
 ];
+

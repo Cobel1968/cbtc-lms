@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { Globe, BookOpen, Clock } from 'lucide-react';
@@ -49,9 +49,10 @@ export default function BilingualCourseCard({ course }: CourseProps) {
       
       <div className="px-5 py-4 bg-gray-50 border-t">
         <button className="w-full py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800">
-          {language === 'en' ? 'Start Training' : 'Démarrer la formation'}
+          {language === 'en' ? 'Start Training' : 'D�marrer la formation'}
         </button>
       </div>
     </div>
   );
 }
+
