@@ -1,15 +1,16 @@
-﻿'use client';
+'use client';
 import Link from 'next/link';
-import { Shield, Activity, Globe } from 'lucide-react';
+import Image from 'next/image';
+import { Activity, Globe } from 'lucide-react';
 
 export default function TopNav() {
   return (
     <nav className="w-full bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
       <div className="flex items-center gap-2">
-        <div className="bg-blue-600 p-1.5 rounded-lg">
-          <Shield className="w-5 h-5 text-white" />
-        </div>
-        <span className="font-bold text-slate-800 tracking-tight">COBEL ENGINE</span>
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="/logo.png" alt="Cobel" width={120} height={40} className="h-10 w-auto object-contain" priority />
+          <span className="font-bold text-slate-800 tracking-tight hidden sm:inline">COBEL ENGINE</span>
+        </Link>
       </div>
 
       <div className="flex items-center gap-6 text-sm font-medium text-slate-600">

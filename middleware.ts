@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // 3. PUBLIC BYPASS
-  const isPublicPage = ['/', '/diagnostic', '/login', '/register', '/auth', '/pricing'].some(
+  const isPublicPage = ['/', '/menu', '/diagnostic', '/login', '/register', '/auth', '/pricing', '/curriculum', '/courses', '/certificate', '/transcript', '/verify'].some(
     path => pathname === path || pathname.startsWith(path)
   );
   const isPublicApi =
